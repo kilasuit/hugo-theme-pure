@@ -2,56 +2,18 @@
 
 A port of [hexo-theme-pure](https://github.com/cofess/hexo-theme-pure) for Hugo. Powerful & Clean. [Iconfont](http://blog.cofess.com/hexo-theme-pure/iconfont/demo_fontclass.html)
 
+This was previously built but subsequently archived by [@xiaoheiAh](https://github.com/xiaoheiAh)
+
 [简体中文](README-ZH.md)
 
 ## Contribute
 
-Since I mainly do back-end development, I don’t know anything about the front-end (`CSS` or something). It’s a hard-hitting transplant. Some of the features that I like very much don’t know how to add it. It’s a waste of time to study too long, so If you have a very good `feature` and hope to put it up, it would be best.
+Since I mainly don't do any front end work, I don’t as much about know HTML, CSS & JavaScript as I perhaps should do. If you have a very good `feature` and hope to put it up, please raise a discussion first, so that we can chat about it, but do feel free to raise a PR linking to the discussion if you want to start writing that feature.
 
-The file structure of `repo` is roughly referred to [hexo-theme-pure](https://github.com/cofess/hexo-theme-pure) and should be clearer. It can be modified according to your needs. If you look at the file structure a little, you will find that the function has not been implemented.
 
 ## Changelog
 
-1. [2019-11-19] Add `mainSections` param to avoid hard code.You can set this param to choose which directory under your content folder you want to render. `posts` by default. You can also unset it,but there seems have some problem.
-
-2. [2019-11-19] Support MathJax([PR](https://github.com/xiaoheiAh/hugo-theme-pure/pull/20)) Reference:[MathJax-With-Hugo](https://gohugo.io/content-management/formats/#mathjax-with-hugo)& Upgrade jQuery version([PR](https://github.com/xiaoheiAh/hugo-theme-pure/pull/19)).
-
-   e.g. 
-
-   ```latex
-   $$\begin{cases}
-   a_1x+b_1y+c_1z=d_1\\
-   a_2x+b_2y+c_2z=d_2\\
-   a_3x+b_3y+c_3z=d_3\\
-   \end{cases}
-   $$
-   ```
-
-     <img src="https://raw.githubusercontent.com/xiaoheiAh/imgs/master/20191121103534.png" alt="not-set-mmark" style="zoom:50%;" />
-   <img src="https://raw.githubusercontent.com/xiaoheiAh/imgs/master/20191121104118.png" alt="set-mmark" style="zoom:50%;" />
-
-3. [2019-12-07] beautify toc by [tocbot](https://github.com/tscanlin/tocbot/)
-
-4. [2019-12-24] support pagination
-
-5. [2019-12-31] 
-   1. support highlight shortcode Note: Just compatible with basic `highlight` usage like:
-   
-      ```html
-      {{< highlight go >}}
-      // ... code
-      {{< / highlight >}}
-      ```
-
-     If you use hugo official example like,rendering will be very ugly.I don't want to compatible with it or maybe you want. Don't forget send a pr~ thanks.
-   
-     ```html
-      {{< highlight go "linenos=table,hl_lines=8 15-17,linenostart=199" >}}
-      // ... code
-      {{< / highlight >}}
-     ```
-   
-   2. Minify css&js file.
+We will maintain a changelog in a dedicated [CHANGELOG.MD file](./CHANGELOG.MD)
 
 ## Screenshots
 
@@ -69,7 +31,7 @@ The file structure of `repo` is roughly referred to [hexo-theme-pure](https://gi
 
 ```bash
 $ cd $HUGO_ROOT
-$ git clone https://github.com/xiaoheiAh/hugo-theme-pure themes/pure
+$ git clone https://github.com/kilasuit/hugo-theme-pure themes/pure
 $ ./hugo server -t pure
 ```
 
