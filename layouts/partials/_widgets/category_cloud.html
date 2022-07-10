@@ -1,0 +1,33 @@
+<div class="widget">
+    <h3 class="widget-title"> {{ T "widget_category" }}</h3>
+    <div id="category-cloud-list" class="widget-body">
+            {{ range $name, $taxonomy := $.Site.Taxonomies.categories }}
+            {{ with $.Site.GetPage (printf "/category/%s" $name) }}
+            <a href="{{ .Permalink }}" class="category-list-link" rel="{{ $taxonomy.Count}}">{{ $name }}<span
+               class="category-list-count">{{ $taxonomy.Count}}</span></a>
+            {{ end }}
+            {{- end }}
+    </div>
+<script>
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    categoryCloud('#category-cloud-list a', {{ $.Site.Params.category_cloud.min }}, {{ $.Site.Params.category_cloud.max }});
+  }
+};
+
+function categoryCloud(where, min, max) {
+  let iMax = 0;
+  let iMin = 0;
+  $(where).each(function() {
+    let weight = Number($(this).attr("rel"));
+    if(iMax < weight) iMax = weight;
+    if(iMin > weight || iMin == 0) iMin = weight;
+  });
+  let step = (max - min)/(iMax - iMin);
+  $(where).each(function() {
+    let weight = $(this).attr("rel") - iMin;
+    $(this).css({"font-size": min + (weight * step) + 'px'});
+  });
+};
+</script>
+</div>
