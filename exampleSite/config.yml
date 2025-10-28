@@ -182,7 +182,7 @@ params:
 
   # config
   config:
-    skin: theme-black # theme color default is white. other type [theme-black,theme-blue,theme-green,theme-purple]
+    skin: theme-black # theme color default is white. Available options: [theme-black, theme-blue, theme-green, theme-purple, theme-yellow, theme-orange, theme-dark-blue, theme-red-deep, theme-red-bright, theme-pink, theme-turquoise, theme-bright-cyan, theme-bright-green, theme-bright-magenta, theme-bright-yellow, theme-cyan, theme-magenta]
     layout: main-center # main-left main-center main-right
     excerpt_link: Read More
     toc: true
