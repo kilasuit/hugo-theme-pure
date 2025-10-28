@@ -74,6 +74,36 @@ menuIcons:
   about: icon-cup-fill
 ```
 
+## Theme Colors
+
+The theme includes multiple color schemes that can be configured using the `skin` parameter. Available options:
+
+- `theme-black` (default) - Dark gray gradient
+- `theme-blue` - Blue gradient
+- `theme-green` - Green/teal gradient
+- `theme-purple` - Purple gradient
+- `theme-yellow` - Golden yellow to orange gradient
+- `theme-orange` - Orange to red gradient
+- `theme-dark-blue` - Dark navy blue gradient
+- `theme-red-deep` - Deep burgundy red gradient
+- `theme-red-bright` - Bright red gradient
+- `theme-pink` - Magenta to coral gradient
+- `theme-turquoise` - Teal to turquoise gradient
+- `theme-bright-cyan` - Cyan to blue gradient
+- `theme-bright-green` - Green to lime gradient
+- `theme-bright-magenta` - Magenta to dark purple gradient
+- `theme-bright-yellow` - Bright yellow to olive gradient
+- `theme-cyan` - Cyan gradient
+- `theme-magenta` - Magenta to purple gradient
+
+Configure in your `config.yml`:
+
+```yml
+params:
+  config:
+    skin: theme-blue  # Choose your preferred theme
+```
+
 ## TOC
 
 enable toc 
