@@ -78,7 +78,7 @@ menuIcons:
 
 The theme includes multiple color schemes that can be configured using the `skin` parameter. Available options:
 
-- `theme-black` (default) - Dark gray gradient
+- `theme-black` (default) - Dark charcoal gradient
 - `theme-blue` - Blue gradient
 - `theme-green` - Green/teal gradient
 - `theme-purple` - Purple gradient
