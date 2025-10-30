@@ -2,7 +2,7 @@
     <div class="panel-body">
         <div class="article-meta">
             <time datetime="{{ .Date }}"
-                itemprop="datePublished">{{- .Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }}</time>
+                itemprop="datePublished">{{- .Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02 15:04") }}</time>
         </div>
         <h3 class="article-title" itemprop="name">
             <a class="article-link" href="{{- .Permalink }}">{{- .Title }}</a>

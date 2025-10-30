@@ -1,7 +1,7 @@
 +++
 author = "Hugo Authors"
 title = "Placeholder Text"
-date = "2019-03-09"
+date = "2019-03-09T11:45:00"
 description = "Lorem Ipsum Dolor Si Amet"
 tags = [
     "markdown",
