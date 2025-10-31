@@ -1,0 +1,8 @@
+{{ if .Params.time }}
+<span class="article-time">
+  <i class="icon icon-clock"></i>&nbsp;
+<a href="{{- .Permalink }}" class="{{ .Scratch.Get "class_name" }}">
+  <time datetime="{{ .Params.time }}" itemprop="timePublished">{{- .Params.time }}</time>
+</a>
+</span>
+{{ end }}

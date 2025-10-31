@@ -1,8 +1,24 @@
 <article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
     <div class="panel-body">
         <div class="article-meta">
+            {{- if .Params.datetime }}
+            <i class="icon icon-calendar-check"></i>&nbsp;
+            <i class="icon icon-clock"></i>&nbsp;
+            {{ if .Params.timezone }}
+            <i class="icon icon-map-marker"></i>&nbsp;
+            {{ end }}
+            <time datetime="{{ .Params.datetime }}" itemprop="datePublished">{{- .Params.datetime }}{{ if .Params.timezone }} ({{ .Params.timezone }}){{ end }}</time>
+            {{- else if .Params.time }}
+            <i class="icon icon-clock"></i>&nbsp;
+            <time datetime="{{ .Params.time }}" itemprop="timePublished">{{- .Params.time }}</time>
+            {{- else if .Date }}
             <time datetime="{{ .Date }}"
                 itemprop="datePublished">{{- .Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }}</time>
+            {{- end }}
+            {{- if and (not .Params.datetime) (.Params.timezone) }}
+            <i class="icon icon-map-marker"></i>&nbsp;
+            <span itemprop="timeZone">{{- .Params.timezone }}</span>
+            {{- end }}
         </div>
         <h3 class="article-title" itemprop="name">
             <a class="article-link" href="{{- .Permalink }}">{{- .Title }}</a>

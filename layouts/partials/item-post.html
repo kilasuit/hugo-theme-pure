@@ -1,8 +1,24 @@
 <a href="{{- .Permalink }}" class="collection-item" itemprop="url" target="_blank">
-    {{- if .Date }}
+    {{- if .Params.datetime }}
+    <i class="icon icon-calendar-check"></i>&nbsp;
+    <i class="icon icon-clock"></i>&nbsp;
+    {{ if .Params.timezone }}<i class="icon icon-map-marker"></i>&nbsp;{{ end }}
+    <time datetime="{{ .Params.datetime }}" itemprop="datePublished" style="margin-right: 5px;">
+        {{- .Params.datetime }}{{ if .Params.timezone }} ({{ .Params.timezone }}){{ end }}
+    </time>
+    {{- else if .Params.time }}
+    <i class="icon icon-clock"></i>&nbsp;
+    <time datetime="{{ .Params.time }}" itemprop="timePublished" style="margin-right: 5px;">
+        {{- .Params.time }}
+    </time>
+    {{- else if .Date }}
     <time datetime="{{ .Date }}" itemprop="datePublished" style="margin-right: 5px;">
         {{- .Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }}
     </time>
+    {{- end }}
+    {{- if and (not .Params.datetime) (.Params.timezone) }}
+    <i class="icon icon-map-marker"></i>&nbsp;
+    <span itemprop="timeZone" style="margin-right: 5px;">{{- .Params.timezone }}</span>
     {{- end }}
     {{- .Title }}
 </a>

@@ -1,0 +1,17 @@
+{{ if .Params.datetime }}
+<span class="article-datetime">
+  <i class="icon icon-calendar-check"></i>&nbsp;
+  <i class="icon icon-clock"></i>&nbsp;
+  {{ if .Params.timezone }}
+  <i class="icon icon-map-marker"></i>&nbsp;
+  {{ end }}
+<a href="{{- .Permalink }}" class="{{ .Scratch.Get "class_name" }}">
+  <time datetime="{{ .Params.datetime }}" itemprop="datePublished">
+    {{- .Params.datetime }}
+    {{ if .Params.timezone }}
+    <span itemprop="timeZone">({{ .Params.timezone }})</span>
+    {{ end }}
+  </time>
+</a>
+</span>
+{{ end }}
