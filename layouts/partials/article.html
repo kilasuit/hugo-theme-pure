@@ -11,6 +11,9 @@
       <div class="article-meta">
         {{ .Scratch.Set "class_name" "article-date" }}
         {{- partial "post/date.html" . }}
+        {{- partial "post/time.html" . }}
+        {{- partial "post/datetime.html" . }}
+        {{- partial "post/timezone.html" . }}
         {{- partial "post/category.html" . }}
         {{- partial "post/tag.html" . }}
         {{- partial "post/pv.html" . }}

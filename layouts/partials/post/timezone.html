@@ -1,0 +1,8 @@
+{{ if .Params.timezone }}
+<span class="article-timezone">
+  <i class="icon icon-map-marker"></i>&nbsp;
+<a href="{{- .Permalink }}" class="{{ .Scratch.Get "class_name" }}">
+  <span itemprop="timeZone">{{- .Params.timezone }}</span>
+</a>
+</span>
+{{ end }}
