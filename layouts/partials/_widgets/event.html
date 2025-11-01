@@ -1,0 +1,19 @@
+<div class="widget">
+    <h3 class="widget-title">
+        <a data-toggle="collapse" href="#collapseEvents" aria-expanded="true">
+            <i class="icon icon-calendar text-active"></i><i class="icon icon-time text"></i>
+            {{ T "widget_events" }}
+        </a>
+    </h3>
+    <div id="collapseEvents" class="widget-body collapse in">
+        <ul class="event-list">
+            {{ range $name, $taxonomy := $.Site.Taxonomies.events }}
+            {{ with $.Site.GetPage (printf "/events/%s" $name) }}
+            <li class="event-list-item"><a href="{{ .Permalink }}" class="event-list-link">{{ .Title }}</a><span
+                    class="event-list-count">{{ $taxonomy.Count }}</span></li>
+            {{ end }}
+            {{- end }}
+        </ul>
+
+    </div>
+</div>

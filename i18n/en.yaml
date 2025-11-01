@@ -35,6 +35,10 @@ page_sponsors:
   other: Sponsors
 page_sponsor:
   other: Sponsor
+page_events:
+  other: Events
+page_event:
+  other: Event
 page_tagcloud:
   other: Tag Cloud
 page_about:
@@ -65,6 +69,8 @@ widget_speakers:
   other: Speakers
 widget_sponsors:
   other: Sponsors
+widget_events:
+  other: Events
 widget_categories:
   other: Categories
 widget_tagcloud:
@@ -138,6 +144,9 @@ total_speaker:
 total_sponsor:
   one: Total {{ .Count }} sponsor
   other: Total {{ .Count }} sponsors
+total_event:
+  one: Total {{ .Count }} event
+  other: Total {{ .Count }} events
 total_link:
   one: Total {{ .Count }} link
   other: Total {{ .Count }} links
