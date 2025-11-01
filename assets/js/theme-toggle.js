@@ -11,6 +11,8 @@
     STORAGE_KEY: 'theme-preference',
     THEME_DARK: 'dark',
     THEME_LIGHT: 'light',
+    mediaQueryList: null,
+    mediaQueryListener: null,
     
     /**
      * Get the current theme from localStorage or system preference
@@ -57,12 +59,23 @@
       
       // Listen for system theme changes
       if (window.matchMedia) {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        this.mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
+        this.mediaQueryListener = (e) => {
           // Only auto-switch if user hasn't manually set a preference
           if (!localStorage.getItem(this.STORAGE_KEY)) {
             this.setTheme(e.matches ? this.THEME_DARK : this.THEME_LIGHT);
           }
-        });
+        };
+        this.mediaQueryList.addEventListener('change', this.mediaQueryListener);
+      }
+    },
+    
+    /**
+     * Cleanup method to remove event listeners
+     */
+    cleanup: function() {
+      if (this.mediaQueryList && this.mediaQueryListener) {
+        this.mediaQueryList.removeEventListener('change', this.mediaQueryListener);
       }
     }
   };
