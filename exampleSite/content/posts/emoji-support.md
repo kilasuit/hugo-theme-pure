@@ -7,6 +7,9 @@ tags = [
     "emoji",
 ]
 series = ["Themes Guide"]
+authors = ["Hugo Authors"]
+speakers = ["Community Speaker"]
+sponsors = ["Tech Sponsors Inc"]
 +++
 
 Emoji can be enabled in a Hugo project in a number of ways. 

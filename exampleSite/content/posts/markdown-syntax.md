@@ -14,6 +14,9 @@ categories = [
     "syntax",
 ]
 series = ["Themes Guide"]
+authors = ["Hugo Authors", "Markdown Team"]
+speakers = ["Tech Presenter"]
+sponsors = ["Open Source Foundation"]
 aliases = ["migrate-from-jekyl"]
 +++
 

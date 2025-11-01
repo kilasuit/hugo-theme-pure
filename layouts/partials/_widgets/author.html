@@ -1,0 +1,19 @@
+<div class="widget">
+    <h3 class="widget-title">
+        <a data-toggle="collapse" href="#collapseAuthors" aria-expanded="true">
+            <i class="icon icon-user text-active"></i><i class="icon icon-user-fill text"></i>
+            {{ T "widget_authors" }}
+        </a>
+    </h3>
+    <div id="collapseAuthors" class="widget-body collapse in">
+        <ul class="author-list">
+            {{ range $name, $taxonomy := $.Site.Taxonomies.authors }}
+            {{ with $.Site.GetPage (printf "/authors/%s" $name) }}
+            <li class="author-list-item"><a href="{{ .Permalink }}" class="author-list-link">{{ .Title }}</a><span
+                    class="author-list-count">{{ $taxonomy.Count}}</span></li>
+            {{ end }}
+            {{- end }}
+        </ul>
+
+    </div>
+</div>

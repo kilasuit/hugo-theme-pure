@@ -16,6 +16,9 @@ taxonomies:
     category : categories
     tag : tags
     series : series
+    author : authors
+    speaker : speakers
+    sponsor : sponsors
 outputFormats:          # use for search. recommend not to modify 
   SearchIndex:
     mediaType: "application/json"
@@ -63,11 +66,29 @@ menu:
       url: /series/
       weight: 5
 
+    - identifier: authors
+      name: Authors
+      title: Authors
+      url: /authors/
+      weight: 6
+
+    - identifier: speakers
+      name: Speakers
+      title: Speakers
+      url: /speakers/
+      weight: 7
+
+    - identifier: sponsors
+      name: Sponsors
+      title: Sponsors
+      url: /sponsors/
+      weight: 8
+
     - identifier: about
       name: About
       title: About
       url: /about/
-      weight: 6
+      weight: 9
 
 
 params:
@@ -97,6 +118,9 @@ params:
     categories: icon-folder
     tags: icon-tags
     series: icon-book-fill
+    authors: icon-user
+    speakers: icon-users
+    sponsors: icon-trophy
     repository: icon-project
     books: icon-book-fill
     links: icon-friendship
@@ -207,6 +231,9 @@ params:
     - tag_cloud
     - category
     - series
+    - author
+    - speaker
+    - sponsor
     - tag
     - recent_posts
 

@@ -23,6 +23,18 @@ page_tags:
   other: 标签
 page_series:
   other: 系列
+page_authors:
+  other: 作者
+page_author:
+  other: 作者
+page_speakers:
+  other: 演讲者
+page_speaker:
+  other: 演讲者
+page_sponsors:
+  other: 赞助商
+page_sponsor:
+  other: 赞助商
 page_tagcloud:
   other: 标签云
 page_uncategorized:
@@ -65,6 +77,12 @@ widget_tags:
   other: 标签
 widget_series:
   other: 系列
+widget_authors:
+  other: 作者
+widget_speakers:
+  other: 演讲者
+widget_sponsors:
+  other: 赞助商
 widget_categories:
   other: 分类
 widget_tagcloud:
@@ -112,6 +130,12 @@ total_series:
   other: 共 {{ .Count }} 个系列
 total_category:
   other: 共 {{ .Count }} 个分类
+total_author:
+  other: 共 {{ .Count }} 位作者
+total_speaker:
+  other: 共 {{ .Count }} 位演讲者
+total_sponsor:
+  other: 共 {{ .Count }} 个赞助商
 total_link:
   other: 共 {{ .Count }} 友链
 total_repository:

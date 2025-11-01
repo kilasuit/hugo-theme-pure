@@ -23,6 +23,18 @@ page_tags:
   other: Tags
 page_series:
   other: Series
+page_authors:
+  other: Authors
+page_author:
+  other: Author
+page_speakers:
+  other: Speakers
+page_speaker:
+  other: Speaker
+page_sponsors:
+  other: Sponsors
+page_sponsor:
+  other: Sponsor
 page_tagcloud:
   other: Tag Cloud
 page_about:
@@ -47,6 +59,12 @@ widget_tags:
   other: Tags
 widget_series:
   other: Series
+widget_authors:
+  other: Authors
+widget_speakers:
+  other: Speakers
+widget_sponsors:
+  other: Sponsors
 widget_categories:
   other: Categories
 widget_tagcloud:
@@ -111,6 +129,15 @@ total_series:
 total_category:
   one: Total {{ .Count }} category
   other: Total {{ .Count }} categories
+total_author:
+  one: Total {{ .Count }} author
+  other: Total {{ .Count }} authors
+total_speaker:
+  one: Total {{ .Count }} speaker
+  other: Total {{ .Count }} speakers
+total_sponsor:
+  one: Total {{ .Count }} sponsor
+  other: Total {{ .Count }} sponsors
 total_link:
   other: Total {{ .Count }} link
   other: Total {{ .Count }} links
