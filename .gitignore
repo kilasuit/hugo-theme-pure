@@ -2,3 +2,6 @@
 exampleSite/public/
 exampleSite/.hugo_build.lock
 .hugo_build.lock
+hugo
+hugo_extended_*.tar.gz
+exampleSite/themes/
