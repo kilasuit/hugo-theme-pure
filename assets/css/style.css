@@ -10427,27 +10427,29 @@ body.okayNav-loaded {
   background-color: #fffae6;
 }
 
-/* Link icon for accessibility - makes it clear that text is a link */
-.marked-body a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after,
-.content a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after,
-p a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after,
-li a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after {
+/* Link icon for accessibility - only in post content */
+.article-entry a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):before {
+  content: "🔗 ";
+  font-size: 0.85em;
+  opacity: 0.6;
+  margin-right: 0.15em;
+}
+
+.article-entry a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after {
   content: " 🔗";
   font-size: 0.85em;
   opacity: 0.6;
   margin-left: 0.15em;
-  display: inline-block;
 }
 
 /* Don't show link icon on links that only contain images */
-a:has(> img):after {
+.article-entry a:has(> img):before,
+.article-entry a:has(> img):after {
   content: none !important;
 }
 
 /* Hover effect for link icons */
-.marked-body a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after,
-.content a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after,
-p a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after,
-li a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after {
+.article-entry a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:before,
+.article-entry a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after {
   opacity: 0.8;
 }

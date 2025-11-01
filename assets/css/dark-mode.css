@@ -235,17 +235,13 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Link icon styling in dark mode */
-[data-theme="dark"] .marked-body a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after,
-[data-theme="dark"] .content a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after,
-[data-theme="dark"] p a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after,
-[data-theme="dark"] li a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after {
+/* Link icon styling in dark mode - only in post content */
+[data-theme="dark"] .article-entry a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):before,
+[data-theme="dark"] .article-entry a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after {
   opacity: 0.5;
 }
 
-[data-theme="dark"] .marked-body a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after,
-[data-theme="dark"] .content a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after,
-[data-theme="dark"] p a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after,
-[data-theme="dark"] li a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after {
+[data-theme="dark"] .article-entry a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:before,
+[data-theme="dark"] .article-entry a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after {
   opacity: 0.7;
 }
