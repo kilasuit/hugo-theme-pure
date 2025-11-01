@@ -17,6 +17,8 @@
     })
     hljs.initHighlightingOnLoad();
 </script>
+{{- $themeToggle := resources.Get "js/theme-toggle.js" | resources.Minify | resources.Fingerprint}}
+<script src="{{- $themeToggle.Permalink }}"></script>
 {{- $appjs := resources.Get "js/application.js" | resources.Minify | resources.Fingerprint}}
 <script src="{{- $appjs.Permalink }}"></script>
 {{- $plugin := resources.Get "js/plugin.js" | resources.Minify | resources.Fingerprint}}
