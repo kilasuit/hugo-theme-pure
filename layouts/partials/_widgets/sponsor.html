@@ -10,7 +10,7 @@
             {{ range $name, $taxonomy := $.Site.Taxonomies.sponsors }}
             {{ with $.Site.GetPage (printf "/sponsors/%s" $name) }}
             <li class="sponsor-list-item"><a href="{{ .Permalink }}" class="sponsor-list-link">{{ .Title }}</a><span
-                    class="sponsor-list-count">{{ $taxonomy.Count}}</span></li>
+                    class="sponsor-list-count">{{ $taxonomy.Count }}</span></li>
             {{ end }}
             {{- end }}
         </ul>

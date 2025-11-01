@@ -139,7 +139,7 @@ total_sponsor:
   one: Total {{ .Count }} sponsor
   other: Total {{ .Count }} sponsors
 total_link:
-  other: Total {{ .Count }} link
+  one: Total {{ .Count }} link
   other: Total {{ .Count }} links
 total_repository:
   other: Total {{ .Count }} projects
