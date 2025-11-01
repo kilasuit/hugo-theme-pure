@@ -4,7 +4,7 @@
     <article class="content article article-events post-type-list" itemscope="">
         <header class="article-header">
             <h1 itemprop="name" class="hidden-xs">{{- .Title }}</h1>
-            <p class="text-muted hidden-xs">{{- T "total_event" (len $events) }}</p>
+            <p class="text-muted hidden-xs">{{- T "total_article" (len .Pages) }}</p>
             <nav role="navigation" id="nav-main" class="okayNav">
                 <ul>
                     <li><a href="{{- "events" | absURL }}">{{- T "nav_all" }}</a></li>
