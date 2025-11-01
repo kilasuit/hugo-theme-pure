@@ -208,6 +208,17 @@ body {
   display: none;
 }
 
+/* Tag cloud widget styling in dark mode */
+[data-theme="dark"] #tag-cloud-list a,
+[data-theme="dark"] .tag-list-link {
+  color: var(--text-color) !important;
+}
+
+[data-theme="dark"] #tag-cloud-list a:hover,
+[data-theme="dark"] .tag-list-link:hover {
+  color: var(--link-color) !important;
+}
+
 /* Smooth transitions for theme changes - applied to specific elements */
 [data-theme] body,
 [data-theme] .header,
