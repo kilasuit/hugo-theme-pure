@@ -10,7 +10,7 @@
             {{ range $name, $taxonomy := $.Site.Taxonomies.authors }}
             {{ with $.Site.GetPage (printf "/authors/%s" $name) }}
             <li class="author-list-item"><a href="{{ .Permalink }}" class="author-list-link">{{ .Title }}</a><span
-                    class="author-list-count">{{ $taxonomy.Count}}</span></li>
+                    class="author-list-count">{{ $taxonomy.Count }}</span></li>
             {{ end }}
             {{- end }}
         </ul>

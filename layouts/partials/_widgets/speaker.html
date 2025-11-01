@@ -10,7 +10,7 @@
             {{ range $name, $taxonomy := $.Site.Taxonomies.speakers }}
             {{ with $.Site.GetPage (printf "/speakers/%s" $name) }}
             <li class="speaker-list-item"><a href="{{ .Permalink }}" class="speaker-list-link">{{ .Title }}</a><span
-                    class="speaker-list-count">{{ $taxonomy.Count}}</span></li>
+                    class="speaker-list-count">{{ $taxonomy.Count }}</span></li>
             {{ end }}
             {{- end }}
         </ul>
