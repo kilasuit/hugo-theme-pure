@@ -35,6 +35,10 @@ page_sponsors:
   other: 赞助商
 page_sponsor:
   other: 赞助商
+page_events:
+  other: 活动
+page_event:
+  other: 活动
 page_tagcloud:
   other: 标签云
 page_uncategorized:
@@ -83,6 +87,8 @@ widget_speakers:
   other: 演讲者
 widget_sponsors:
   other: 赞助商
+widget_events:
+  other: 活动
 widget_categories:
   other: 分类
 widget_tagcloud:
@@ -136,6 +142,8 @@ total_speaker:
   other: 共 {{ .Count }} 位演讲者
 total_sponsor:
   other: 共 {{ .Count }} 个赞助商
+total_event:
+  other: 共 {{ .Count }} 个活动
 total_link:
   other: 共 {{ .Count }} 友链
 total_repository:
