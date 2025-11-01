@@ -1,6 +1,11 @@
 <div class="widget">
-    <h3 class="widget-title"> {{ T "widget_series" }}</h3>
-    <div class="widget-body">
+    <h3 class="widget-title">
+        <a data-toggle="collapse" href="#collapseSeries" aria-expanded="true">
+            <i class="icon icon-book text-active"></i><i class="icon icon-book-open text"></i>
+            {{ T "widget_series" }}
+        </a>
+    </h3>
+    <div id="collapseSeries" class="widget-body collapse in">
         <ul class="series-list">
             {{ range $name, $taxonomy := $.Site.Taxonomies.series }}
             {{ with $.Site.GetPage (printf "/series/%s" $name) }}
