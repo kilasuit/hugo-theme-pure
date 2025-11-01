@@ -49,6 +49,8 @@
     {{ end -}}
     {{ $css := resources.Get "css/style.css" | minify | fingerprint}}
     <link rel="stylesheet" href="{{ $css.Permalink }}">
+    {{ $darkModeCss := resources.Get "css/dark-mode.css" | minify | fingerprint}}
+    <link rel="stylesheet" href="{{ $darkModeCss.Permalink }}">
     {{ with .Site.Params.customCSS }}
     <link rel="stylesheet" href="{{ . | absURL }}" async>{{ end }}
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>
