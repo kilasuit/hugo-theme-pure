@@ -10426,3 +10426,32 @@ body.okayNav-loaded {
   border-left: 3px solid #ffcc00;
   background-color: #fffae6;
 }
+
+/* Link icon for accessibility - makes it clear that text is a link */
+.marked-body a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after,
+.content a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after,
+p a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after,
+li a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):after {
+  content: " 🔗";
+  font-size: 0.85em;
+  opacity: 0.6;
+  margin-left: 0.15em;
+  display: inline-block;
+}
+
+/* Don't show link icon on images wrapped in links */
+a > img {
+  display: inline-block;
+}
+
+a:has(> img):after {
+  content: none !important;
+}
+
+/* Hover effect for link icons */
+.marked-body a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after,
+.content a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after,
+p a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after,
+li a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after {
+  opacity: 0.8;
+}
