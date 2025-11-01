@@ -93,7 +93,4 @@
       });
     }
   });
-  
-  // Make ThemeManager globally accessible if needed
-  window.ThemeManager = ThemeManager;
 })();
