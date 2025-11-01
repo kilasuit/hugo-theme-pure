@@ -6079,6 +6079,7 @@ body.no-sidebar .sidebar {
 
 .category-list-count,
 .tag-list-count,
+.series-list-count,
 .archive-list-count {
   padding-left: 5px;
   color: #999;
@@ -6087,12 +6088,14 @@ body.no-sidebar .sidebar {
 
 .category-list-count:before,
 .tag-list-count:before,
+.series-list-count:before,
 .archive-list-count:before {
   content: "(";
 }
 
 .category-list-count:after,
 .tag-list-count:after,
+.series-list-count:after,
 .archive-list-count:after {
   content: ")";
 }
