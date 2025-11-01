@@ -1,10 +1,11 @@
 {{- define "content" }}
 {{- $authors := .Site.Taxonomies.authors }}
+{{- $author := index .Site.Data.authors (.Name | default "default") }}
 <main class="main" role="main">
     <article class="content article article-authors post-type-list" itemscope="">
         <header class="article-header">
-            <h1 itemprop="name" class="hidden-xs">{{- .Title }}</h1>
-            <p class="text-muted hidden-xs">{{- T "total_author" (len $authors) }}</p>
+            <h1 itemprop="name">{{- .Title }}</h1>
+            <p class="text-muted">{{- T "total_author" (len $authors) }}</p>
             <nav role="navigation" id="nav-main" class="okayNav">
                 <ul>
                     <li><a href="{{- "authors" | absURL }}">{{- T "nav_all" }}</a></li>
@@ -20,7 +21,13 @@
                 <div class="panel-heading" role="tab">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" href="#collapse{{- .Name | md5 }}" aria-expanded="true">
+                            {{- if $author }}
+                            {{- with $author.avatar }}
+                            <img src="{{ $author.avatar | relURL }}" alt="{{ $author.name }} avatar" class="author-avatar-small" width="32" height="32" style="border-radius: 50%; margin-right: 8px; vertical-align: middle;">
+                            {{- end }}
+                            {{- else }}
                             <i class="icon icon-user text-active"></i><i class="icon icon-user-fill text"></i>
+                            {{- end }}
                             {{- .Name }}
                         </a>
                         <small class="text-muted">(Total {{ len .Pages }} articles)</small>

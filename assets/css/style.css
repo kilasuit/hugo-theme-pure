@@ -10453,3 +10453,48 @@ body.okayNav-loaded {
 .article-entry a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([href*="javascript:"]):hover:after {
   opacity: 0.8;
 }
+
+/* Author avatar styling for responsive display */
+.author-avatar-small {
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Ensure author information is always visible on all screen sizes */
+.article-authors h1,
+.article-authors p.text-muted {
+  display: block !important;
+}
+
+/* Responsive author display for very small screens */
+@media (max-width: 480px) {
+  .article-authors .panel-title {
+    font-size: 0.9em;
+  }
+  
+  .article-authors .panel-title small {
+    display: block;
+    margin-top: 4px;
+    margin-left: 40px;
+  }
+  
+  /* Compact author card for multiple authors on small screens */
+  .article-authors .panel-heading {
+    padding: 8px 12px;
+  }
+}
+
+/* For extra small screens, maintain visibility of avatars */
+@media (max-width: 320px) {
+  .author-avatar-small {
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+  }
+  
+  .article-authors .panel-title {
+    font-size: 0.85em;
+  }
+}
