@@ -2,7 +2,7 @@
   <span class="article-series">
     <i class="icon icon-book"></i>&nbsp;
     {{- range . }}
-    <a class="article-series-link" href="{{ "series" | relLangURL }}/{{ . | urlize }}/"> {{ . }} </a>
+    <a class="article-series-link" href="{{ "series" | relLangURL }}/{{ . | urlize }}/">{{ . }}</a>
     {{- end}}
   </span>
 {{- end }}
