@@ -22,7 +22,7 @@
                     <h3 class="panel-title">
                         <a data-toggle="collapse" href="#collapse{{- $name | md5 }}" aria-expanded="true">
                             <i class="icon icon-book text-active"></i><i class="icon icon-book-open text"></i>
-                            {{- $name }}
+                            {{- with $.Site.GetPage (printf "/series/%s" $name) }}{{ .Title }}{{ end }}
                         </a>
                         <small class="text-muted">(Total {{- .Count }} articles)</small>
                     </h3>
