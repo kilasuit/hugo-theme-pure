@@ -6080,7 +6080,10 @@ body.no-sidebar .sidebar {
 .category-list-count,
 .tag-list-count,
 .series-list-count,
-.archive-list-count {
+.archive-list-count,
+.author-list-count,
+.speaker-list-count,
+.sponsor-list-count {
   padding-left: 5px;
   color: #999;
   font-size: 0.85em;
@@ -6089,26 +6092,38 @@ body.no-sidebar .sidebar {
 .category-list-count:before,
 .tag-list-count:before,
 .series-list-count:before,
-.archive-list-count:before {
+.archive-list-count:before,
+.author-list-count:before,
+.speaker-list-count:before,
+.sponsor-list-count:before {
   content: "(";
 }
 
 .category-list-count:after,
 .tag-list-count:after,
 .series-list-count:after,
-.archive-list-count:after {
+.archive-list-count:after,
+.author-list-count:after,
+.speaker-list-count:after,
+.sponsor-list-count:after {
   content: ")";
 }
 
 .category-list,
 .archive-list,
-.tag-list {
+.tag-list,
+.author-list,
+.speaker-list,
+.sponsor-list {
   line-height: 1.75;
 }
 
 .category-list li:before,
 .archive-list li:before,
-.tag-list li:before {
+.tag-list li:before,
+.author-list li:before,
+.speaker-list li:before,
+.sponsor-list li:before {
   color: #ccc;
   content: "▪";
   font-size: 12px;
