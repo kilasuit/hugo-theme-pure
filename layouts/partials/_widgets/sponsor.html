@@ -1,0 +1,19 @@
+<div class="widget">
+    <h3 class="widget-title">
+        <a data-toggle="collapse" href="#collapseSponsors" aria-expanded="true">
+            <i class="icon icon-trophy text-active"></i><i class="icon icon-star text"></i>
+            {{ T "widget_sponsors" }}
+        </a>
+    </h3>
+    <div id="collapseSponsors" class="widget-body collapse in">
+        <ul class="sponsor-list">
+            {{ range $name, $taxonomy := $.Site.Taxonomies.sponsors }}
+            {{ with $.Site.GetPage (printf "/sponsors/%s" $name) }}
+            <li class="sponsor-list-item"><a href="{{ .Permalink }}" class="sponsor-list-link">{{ .Title }}</a><span
+                    class="sponsor-list-count">{{ $taxonomy.Count}}</span></li>
+            {{ end }}
+            {{- end }}
+        </ul>
+
+    </div>
+</div>

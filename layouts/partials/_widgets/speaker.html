@@ -1,0 +1,19 @@
+<div class="widget">
+    <h3 class="widget-title">
+        <a data-toggle="collapse" href="#collapseSpeakers" aria-expanded="true">
+            <i class="icon icon-users text-active"></i><i class="icon icon-user text"></i>
+            {{ T "widget_speakers" }}
+        </a>
+    </h3>
+    <div id="collapseSpeakers" class="widget-body collapse in">
+        <ul class="speaker-list">
+            {{ range $name, $taxonomy := $.Site.Taxonomies.speakers }}
+            {{ with $.Site.GetPage (printf "/speakers/%s" $name) }}
+            <li class="speaker-list-item"><a href="{{ .Permalink }}" class="speaker-list-link">{{ .Title }}</a><span
+                    class="speaker-list-count">{{ $taxonomy.Count}}</span></li>
+            {{ end }}
+            {{- end }}
+        </ul>
+
+    </div>
+</div>
