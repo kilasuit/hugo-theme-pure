@@ -21,6 +21,8 @@ page_tag:
   other: 标签
 page_tags:
   other: 标签
+page_series:
+  other: 系列
 page_tagcloud:
   other: 标签云
 page_uncategorized:
@@ -61,6 +63,8 @@ widget_archive:
   other: 归档
 widget_tags:
   other: 标签
+widget_series:
+  other: 系列
 widget_categories:
   other: 分类
 widget_tagcloud:
@@ -104,6 +108,8 @@ total_article:
   other: 共 {{ .Count }} 篇文章
 total_tag:
   other: 共 {{ .Count }} 个标签
+total_series:
+  other: 共 {{ .Count }} 个系列
 total_category:
   other: 共 {{ .Count }} 个分类
 total_link:

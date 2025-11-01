@@ -1,0 +1,14 @@
+<div class="widget">
+    <h3 class="widget-title"> {{ T "widget_series" }}</h3>
+    <div class="widget-body">
+        <ul class="series-list">
+            {{ range $name, $taxonomy := $.Site.Taxonomies.series }}
+            {{ with $.Site.GetPage (printf "/series/%s" $name) }}
+            <li class="series-list-item"><a href="{{ .Permalink }}" class="series-list-link">{{ $name }}</a><span
+                    class="series-list-count">{{ $taxonomy.Count}}</span></li>
+            {{ end }}
+            {{- end }}
+        </ul>
+
+    </div>
+</div>

@@ -8,6 +8,7 @@ tags = [
     "example",
     "datetime",
 ]
+series = ["Time and Date Examples"]
 +++
 
 This post demonstrates the use of the **datetime** parameter without a timezone.

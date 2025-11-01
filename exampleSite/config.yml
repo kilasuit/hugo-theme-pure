@@ -57,11 +57,17 @@ menu:
       url: /tags/
       weight: 4
 
+    - identifier: series
+      name: Series
+      title: Series
+      url: /series/
+      weight: 5
+
     - identifier: about
       name: About
       title: About
       url: /about/
-      weight: 5
+      weight: 6
 
 
 params:
@@ -90,6 +96,7 @@ params:
     archives: icon-archives-fill
     categories: icon-folder
     tags: icon-tags
+    series: icon-book-fill
     repository: icon-project
     books: icon-book-fill
     links: icon-friendship
@@ -199,6 +206,7 @@ params:
     - board
     - tag_cloud
     - category
+    - series
     - tag
     - recent_posts
 

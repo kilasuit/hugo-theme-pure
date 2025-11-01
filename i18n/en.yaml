@@ -21,6 +21,8 @@ page_tag:
   other: Tag
 page_tags:
   other: Tags
+page_series:
+  other: Series
 page_tagcloud:
   other: Tag Cloud
 page_about:
@@ -43,6 +45,8 @@ widget_archive:
   other: Archive
 widget_tags:
   other: Tags
+widget_series:
+  other: Series
 widget_categories:
   other: Categories
 widget_tagcloud:
@@ -101,6 +105,9 @@ total_article:
   other: Total {{ .Count }} articles
 total_tag:
   other: Total {{ .Count }} tags
+total_series:
+  one: Total {{ .Count }} series
+  other: Total {{ .Count }} series
 total_category:
   one: Total {{ .Count }} category
   other: Total {{ .Count }} categories
