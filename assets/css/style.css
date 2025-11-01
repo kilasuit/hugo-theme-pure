@@ -10439,11 +10439,7 @@ li a:not(.headerlink):not(.markdownIt-Anchor):not(.btn):not([href^="#"]):not([hr
   display: inline-block;
 }
 
-/* Don't show link icon on images wrapped in links */
-a > img {
-  display: inline-block;
-}
-
+/* Don't show link icon on links that only contain images */
 a:has(> img):after {
   content: none !important;
 }
