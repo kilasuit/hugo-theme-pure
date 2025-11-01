@@ -8,6 +8,7 @@ tags = [
     "example",
     "time",
 ]
+series = ["Time and Date Examples"]
 +++
 
 This post demonstrates the use of the **time** parameter.

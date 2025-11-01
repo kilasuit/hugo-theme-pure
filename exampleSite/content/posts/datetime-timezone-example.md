@@ -10,6 +10,7 @@ tags = [
     "datetime",
     "timezone",
 ]
+series = ["Time and Date Examples"]
 +++
 
 This post demonstrates the use of the **datetime** parameter with a **timezone**.
