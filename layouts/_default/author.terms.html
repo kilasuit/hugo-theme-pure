@@ -24,7 +24,7 @@
                         <a data-toggle="collapse" href="#collapse{{- $name | md5 }}" aria-expanded="true">
                             {{- if $author }}
                             {{- with $author.avatar }}
-                            <img src="{{ $author.avatar | relURL }}" alt="{{ $author.name }} avatar" class="author-avatar-small" width="32" height="32" style="border-radius: 50%; margin-right: 8px; vertical-align: middle;">
+                            <img src="{{ $author.avatar | relURL }}" alt="{{ $author.name }} avatar" class="author-avatar-small" width="32" height="32">
                             {{- end }}
                             {{- else }}
                             <i class="icon icon-user text-active"></i><i class="icon icon-user-fill text"></i>
