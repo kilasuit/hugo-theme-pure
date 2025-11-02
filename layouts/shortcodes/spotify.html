@@ -1,0 +1,10 @@
+{{- $type := .Get 0 -}}
+{{- $id := .Get 1 -}}
+{{- $width := .Get "width" | default "100%" -}}
+{{- $height := .Get "height" | default "380" -}}
+
+{{- if eq $type "track" -}}
+  {{- $height = .Get "height" | default "80" -}}
+{{- end -}}
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/{{ $type }}/{{ $id }}" width="{{ $width }}" height="{{ $height }}" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
