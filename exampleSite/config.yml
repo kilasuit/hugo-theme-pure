@@ -7,6 +7,8 @@ footnoteReturnLinkContents: ↩
 hasCJKLanguage: true
 paginate: 7
 enableEmoji: true
+enableGitInfo: true  # Enable Git info for all pages
+ignoreErrors: ['error-missing-instagram-accesstoken']
 PygmentsCodeFences: false
 googleAnalytics: ""      # UA-XXXXXXXX-X 
 permalinks:
@@ -103,6 +105,12 @@ params:
   dateFormatToUse: "2006-01-02"
   enablePostCopyright: true
   copyright_link: http://creativecommons.org/licenses/by/4.0/deed.zh
+  # Git repository URL for commit links
+  gitRepo: https://github.com/kilasuit/hugo-theme-pure
+  # Show Git commit info in footer
+  showGitInfo: true
+  # Show Git commit info on each post (optional)
+  showPostGitInfo: true
   # the directory under content folder that you want to render
   mainSections: ["posts"]
   # Enable/Disable menu icons

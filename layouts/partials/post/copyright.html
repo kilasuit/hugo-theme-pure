@@ -13,6 +13,15 @@
         {{ .Site.Copyright }}
 {{- end }}
     </li>
+    {{- if and .Site.Params.showPostGitInfo .GitInfo }}
+    <li class="post-git-info">
+      <strong>{{ T "git_commit" }}: </strong>
+      <a href="{{ .Site.Params.gitRepo }}/commit/{{ .GitInfo.Hash }}" target="_blank" rel="noopener" title="{{ .GitInfo.Subject }}">
+        {{ .GitInfo.AbbreviatedHash }}
+      </a>
+      <span class="git-commit-date">({{ .GitInfo.AuthorDate.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }})</span>
+    </li>
+    {{- end }}
   </ul>
 </blockquote>
 {{ $profile := .Site.Params.profile }}

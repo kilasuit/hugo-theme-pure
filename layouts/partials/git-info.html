@@ -1,0 +1,12 @@
+{{- if .GitInfo }}
+<div class="git-info">
+  <span class="git-commit-info">
+    <i class="icon icon-git"></i>
+    {{T "git_commit"}}: 
+    <a href="{{ .Site.Params.gitRepo }}/commit/{{ .GitInfo.Hash }}" target="_blank" rel="noopener" title="{{ .GitInfo.Subject }}">
+      {{ .GitInfo.AbbreviatedHash }}
+    </a>
+    <span class="git-commit-date"> ({{ .GitInfo.AuthorDate.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }})</span>
+  </span>
+</div>
+{{- end }}

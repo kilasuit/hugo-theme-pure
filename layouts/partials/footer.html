@@ -15,5 +15,10 @@
         <a href="https://beian.miit.gov.cn/" target="_blank">{{- print .Site.Params.beian }}</a>
       </div>
     {{ end }}
+    {{- if and .Site.Params.showGitInfo .GitInfo }}
+    <div class="site-git-info">
+      {{- partial "git-info.html" . }}
+    </div>
+    {{- end }}
   </div>
 </footer>
