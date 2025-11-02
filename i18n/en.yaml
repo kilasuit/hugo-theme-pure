@@ -194,6 +194,12 @@ copyright_post:
   other: Permalink
 copyright_license:
   other: License
+git_commit:
+  other: Commit
+git_commit_hash:
+  other: Hash
+git_commit_date:
+  other: Date
 
 insight_hint: 
   other: Type something...
