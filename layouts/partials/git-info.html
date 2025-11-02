@@ -1,6 +1,7 @@
 {{- if .GitInfo }}
 <div class="git-info">
   <span class="git-commit-info">
+    {{/* Using icon-git which follows the theme's icon naming convention */}}
     <i class="icon icon-git"></i>
     {{T "git_commit"}}: 
     <a href="{{ .Site.Params.gitRepo }}/commit/{{ .GitInfo.Hash }}" target="_blank" rel="noopener" title="{{ .GitInfo.Subject }}">

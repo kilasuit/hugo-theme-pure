@@ -193,10 +193,6 @@ copyright_license:
   other: License
 git_commit:
   other: 提交
-git_commit_hash:
-  other: 哈希
-git_commit_date:
-  other: 日期
 
 
 insight_hint: 
