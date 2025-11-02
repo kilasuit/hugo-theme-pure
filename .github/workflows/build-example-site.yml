@@ -36,6 +36,11 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
+      - name: Setup theme
+        run: |
+          mkdir -p exampleSite/themes
+          ln -s $(pwd) exampleSite/themes/pure
+
       - name: Build example site
         run: |
           cd exampleSite
