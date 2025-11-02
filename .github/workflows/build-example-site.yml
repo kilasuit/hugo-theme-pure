@@ -33,13 +33,14 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.135.0'
           extended: true
 
       - name: Setup theme
         run: |
           mkdir -p exampleSite/themes
-          ln -s $(pwd) exampleSite/themes/pure
+          THEME_NAME=$(basename "$GITHUB_REPOSITORY" | sed 's/^hugo-theme-//')
+          ln -s $(pwd) "exampleSite/themes/${THEME_NAME}"
 
       - name: Build example site
         run: |
@@ -107,7 +108,7 @@ jobs:
               });
 
             const botComment = comments.find(comment =>
-              comment.user.type === 'Bot' &&
+              comment.user.login === 'github-actions[bot]' &&
               comment.body.includes('Example Site Build Complete')
             );
 
