@@ -8,6 +8,7 @@
 
   const BionicReading = {
     STORAGE_KEY: 'bionic-reading-enabled',
+    CONTENT_LOAD_DELAY: 100,
     contentSelector: '.article-entry',
     
     /**
@@ -113,7 +114,7 @@
       
       const textNodes = [];
       let node;
-      while (node = walker.nextNode()) {
+      while ((node = walker.nextNode()) !== null) {
         textNodes.push(node);
       }
       
@@ -204,7 +205,7 @@
       // Apply saved preference
       if (this.isEnabled()) {
         // Delay to ensure content is loaded
-        setTimeout(() => this.enable(), 100);
+        setTimeout(() => this.enable(), this.CONTENT_LOAD_DELAY);
       }
       
       // Set up toggle button
