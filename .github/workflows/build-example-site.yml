@@ -5,14 +5,14 @@ on:
     branches:
       - main
       - master
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, closed]
   push:
     branches:
       - main
       - master
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
   pull-requests: write
@@ -24,6 +24,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.action != 'closed'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -47,7 +48,13 @@ jobs:
           cd exampleSite
           REPO_OWNER="${{ github.repository_owner }}"
           REPO_NAME="${{ github.event.repository.name }}"
-          BASE_URL="https://${REPO_OWNER}.github.io/${REPO_NAME}/"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BRANCH_NAME="${{ github.head_ref }}"
+            SAFE_BRANCH=$(echo "$BRANCH_NAME" | sed 's/[^a-zA-Z0-9-]/-/g')
+            BASE_URL="https://${REPO_OWNER}.github.io/${REPO_NAME}/${SAFE_BRANCH}/"
+          else
+            BASE_URL="https://${REPO_OWNER}.github.io/${REPO_NAME}/"
+          fi
           hugo --minify --baseURL "${BASE_URL}"
 
       - name: Upload artifact
@@ -55,7 +62,7 @@ jobs:
         with:
           path: exampleSite/public
 
-  deploy:
+  deploy-main:
     runs-on: ubuntu-latest
     needs: build
     if: >
@@ -69,10 +76,75 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-  comment-preview:
+  deploy-pr-preview:
     runs-on: ubuntu-latest
     needs: build
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: artifact
+
+      - name: Extract artifact
+        run: |
+          cd artifact
+          tar -xf artifact.tar
+          rm artifact.tar
+
+      - name: Deploy PR preview
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          SAFE_BRANCH=$(echo "$BRANCH_NAME" | sed 's/[^a-zA-Z0-9-]/-/g')
+
+          # Create or update PR preview directory
+          mkdir -p "gh-pages/${SAFE_BRANCH}"
+          rm -rf "gh-pages/${SAFE_BRANCH}"/*
+          cp -r artifact/* "gh-pages/${SAFE_BRANCH}/"
+
+          cd gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "github-actions[bot]@users.noreply.github.com"
+          git add "${SAFE_BRANCH}"
+          git commit -m "Deploy PR preview for ${BRANCH_NAME}" || \
+            echo "No changes"
+          git push
+
+  cleanup-pr-preview:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Remove PR preview
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          SAFE_BRANCH=$(echo "$BRANCH_NAME" | sed 's/[^a-zA-Z0-9-]/-/g')
+
+          if [ -d "${SAFE_BRANCH}" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email \
+              "github-actions[bot]@users.noreply.github.com"
+            git rm -rf "${SAFE_BRANCH}"
+            git commit -m "Remove PR preview for ${BRANCH_NAME}"
+            git push
+          fi
+
+  comment-preview:
+    runs-on: ubuntu-latest
+    needs: deploy-pr-preview
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
     steps:
       - name: Comment PR with preview info
         uses: actions/github-script@v7
@@ -81,22 +153,30 @@ jobs:
             const prNumber = context.payload.pull_request.number;
             const repoOwner = context.repo.owner;
             const repoName = context.repo.repo;
-            const previewUrl = `https://${repoOwner}.github.io/${repoName}/`;
+            const branchName = context.payload.pull_request.head.ref;
+            const safeBranch =
+              branchName.replace(/[^a-zA-Z0-9-]/g, '-');
+            const baseUrl =
+              `https://${repoOwner}.github.io/${repoName}`;
+            const previewUrl = `${baseUrl}/${safeBranch}/`;
+            const mainUrl = `${baseUrl}/`;
 
-            const comment = `## 🚀 Example Site Build Complete!
+            const comment = `## 🚀 Example Site Preview Ready!
 
-            The example site has been built successfully.
+            The example site preview has been deployed for this PR.
 
-            **Note:** Preview deployments are only available for
-            commits to the main branch.
-            Once this PR is merged, the example site will be available at:
-
-            🔗 ${previewUrl}
+            🔗 **Preview URL:** ${previewUrl}
 
             ### Build Details
             - **Commit:** ${context.sha.substring(0, 7)}
-            - **Branch:** ${context.payload.pull_request.head.ref}
+            - **Branch:** ${branchName}
             - **Build Status:** ✅ Success
+
+            Once this PR is merged, the changes will be live at:
+            ${mainUrl}
+
+            *Note: The preview will be automatically removed
+            when this PR is closed.*
             `;
 
             // Find existing comment
@@ -109,7 +189,7 @@ jobs:
 
             const botComment = comments.find(comment =>
               comment.user.login === 'github-actions[bot]' &&
-              comment.body.includes('Example Site Build Complete')
+              comment.body.includes('Example Site Preview Ready')
             );
 
             if (botComment) {
