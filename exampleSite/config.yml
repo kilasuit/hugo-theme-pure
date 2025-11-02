@@ -8,6 +8,7 @@ hasCJKLanguage: true
 paginate: 7
 enableEmoji: true
 enableGitInfo: true  # Enable Git info for all pages
+# Suppress Instagram error for example site (unrelated to Git info feature)
 ignoreErrors: ['error-missing-instagram-accesstoken']
 PygmentsCodeFences: false
 googleAnalytics: ""      # UA-XXXXXXXX-X 
