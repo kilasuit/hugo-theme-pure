@@ -23,6 +23,7 @@ taxonomies:
     speaker : speakers
     sponsor : sponsors
     event : events
+    member : members
 outputFormats:          # use for search. recommend not to modify 
   SearchIndex:
     mediaType: "application/json"
@@ -94,11 +95,17 @@ menu:
       url: /events/
       weight: 9
 
+    - identifier: members
+      name: Members
+      title: Members
+      url: /members/
+      weight: 10
+
     - identifier: about
       name: About
       title: About
       url: /about/
-      weight: 10
+      weight: 11
 
 
 params:
@@ -138,6 +145,7 @@ params:
     speakers: icon-users
     sponsors: icon-trophy
     events: icon-calendar
+    members: icon-users
     repository: icon-project
     books: icon-book-fill
     links: icon-friendship
@@ -252,6 +260,7 @@ params:
     - speaker
     - sponsor
     - event
+    - member
     - tag
     - recent_posts
 

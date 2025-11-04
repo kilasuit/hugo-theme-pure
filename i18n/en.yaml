@@ -39,6 +39,10 @@ page_events:
   other: Events
 page_event:
   other: Event
+page_members:
+  other: Members
+page_member:
+  other: Member
 page_tagcloud:
   other: Tag Cloud
 page_about:
@@ -71,6 +75,8 @@ widget_sponsors:
   other: Sponsors
 widget_events:
   other: Events
+widget_members:
+  other: Members
 widget_categories:
   other: Categories
 widget_tagcloud:
@@ -147,6 +153,9 @@ total_sponsor:
 total_event:
   one: Total {{ .Count }} event
   other: Total {{ .Count }} events
+total_member:
+  one: Total {{ .Count }} member
+  other: Total {{ .Count }} members
 total_link:
   one: Total {{ .Count }} link
   other: Total {{ .Count }} links
