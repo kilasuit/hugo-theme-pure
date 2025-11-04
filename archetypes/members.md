@@ -25,14 +25,14 @@ roles = []
 # - Consultant (Hybrid)
 # - Former PowerShell Team
 # - Former PowerShell Working Group Member
-# - Former Microsoft Global Community Initative Regional Leader
+# - Former Microsoft Global Community Initiative Regional Leader
 # - Former Microsoft MVP
 # - Former Microsoft RD
 # - Former Microsoft FTE
 # - Helpdesk
 # - Junior Developer
 # - Mentor
-# - Microsoft Global Community Initative Regional Leader
+# - Microsoft Global Community Initiative Regional Leader
 # - Microsoft MVP
 # - Microsoft RD
 # - Microsoft
@@ -59,7 +59,7 @@ facebook = ""
 irc = ""
 learnmicrosoft = ""
 linkedin = ""
-mastadon = ""
+mastodon = ""
 microsofttechcommunity = ""
 slack = ""
 twitter = ""
