@@ -39,6 +39,10 @@ page_events:
   other: 活动
 page_event:
   other: 活动
+page_members:
+  other: 成员
+page_member:
+  other: 成员
 page_tagcloud:
   other: 标签云
 page_uncategorized:
@@ -89,6 +93,8 @@ widget_sponsors:
   other: 赞助商
 widget_events:
   other: 活动
+widget_members:
+  other: 成员
 widget_categories:
   other: 分类
 widget_tagcloud:
@@ -144,6 +150,8 @@ total_sponsor:
   other: 共 {{ .Count }} 个赞助商
 total_event:
   other: 共 {{ .Count }} 个活动
+total_member:
+  other: 共 {{ .Count }} 位成员
 total_link:
   other: 共 {{ .Count }} 友链
 total_repository:
