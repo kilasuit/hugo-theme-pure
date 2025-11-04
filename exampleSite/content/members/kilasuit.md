@@ -6,7 +6,8 @@ draft = false
 ### Basic info 
 fuid = "kilasuit-2025"
 name = "Ryan Yates"
-jobtitle = "PowerShell Community Leader"
+jobtitle = "Consultant & Student"
+location = "UK"
 photo = ""
 follow = "https://github.com/kilasuit"
 bio = "PowerShell enthusiast, community contributor, and advocate for automation and DevOps practices. Maintainer of hugo-theme-pure and active in the PowerShell community."

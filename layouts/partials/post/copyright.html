@@ -24,6 +24,7 @@
     {{- end }}
   </ul>
 </blockquote>
+{{- if not (in .RelPermalink "/members/") }}
 {{ $profile := .Site.Params.profile }}
 {{- with $profile.enabled }}
 <div class="panel panel-default panel-badger">
@@ -41,5 +42,6 @@
     </figure>
   </div>
 </div>
+{{- end }}
 {{- end }}
 {{- end }}
