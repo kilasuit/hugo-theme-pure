@@ -7,6 +7,7 @@ draft = true
 fuid = ""
 name = ""
 jobtitle = ""
+location = ""
 photo = ""
 follow = ""
 bio = ""

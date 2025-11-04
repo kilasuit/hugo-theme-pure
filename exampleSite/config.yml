@@ -156,11 +156,11 @@ params:
     enabled: true # Whether to show profile bar
     avatar: avatar.png
     gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
-    author: xiaoheiAh
-    author_title: author title
-    author_description: Good Good Study, Day Day Up~
-    location: Shanghai, China
-    follow: https://github.com/xiaoheiAh
+    author: kilasuit
+    author_title: Consultant & Student
+    author_description: PowerShell enthusiast, community contributor, and advocate for automation and DevOps practices.
+    location: UK
+    follow: https://github.com/kilasuit
     # Social Links
     social:
       links:
