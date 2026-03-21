@@ -6838,6 +6838,25 @@ body.okayNav-loaded {
   margin-bottom: 5px;
 }
 
+/* SVG social icons (new networks not in iconfont) */
+.social-links .social-icon-svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  fill: currentColor;
+  display: inline-block;
+}
+
+/* Coloured mode: each SVG icon uses its official brand colour */
+.social-links-colored .social-icon-svg {
+  fill: var(--brand-color, currentColor);
+}
+
+/* Hover: apply brand colour even when not in coloured mode */
+.social-links li a:hover .social-icon-svg {
+  fill: var(--brand-color, currentColor);
+}
+
 @font-face {
   font-family: "socialshare";
   src: url("../fonts/iconfont.eot");

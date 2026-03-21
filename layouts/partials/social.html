@@ -1,9 +1,10 @@
 {{- $social := .Site.Params.profile.social }}
 {{- with $social }}
-<ul class="social-links">
+{{- $colored := $social.colored | default false }}
+<ul class="social-links{{if $colored}} social-links-colored{{end}}">
     {{- range $name,$url := $social.links }}
     <li><a href="{{- $url | absURL }}" target="_blank" title="{{- $name }}" data-toggle=tooltip data-placement=top >
-            <i class="icon icon-{{$name}}"></i></a></li>
+            {{- partial "social-icon.html" $name }}</a></li>
     {{- end }}
 </ul>
 {{- end }}

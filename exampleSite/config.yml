@@ -163,11 +163,33 @@ params:
     follow: https://github.com/kilasuit
     # Social Links
     social:
+      # Set colored: true to display icons in their official brand colours.
+      # Set colored: false (default) for monochrome icons that inherit the theme colour.
+      colored: false
       links:
         github: https://github.com/xiaoheiAh
-        # weibo: http://weibo.com/{yourid}
-        # twitter: https://twitter.com/
-        # facebook: /
+        # --- Social Media / Communications ---
+        # bluesky: https://bsky.app/profile/yourhandle
+        # discord: https://discord.gg/yourinvite
+        # facebook: https://facebook.com/yourpage
+        # irc: irc://irc.libera.chat/yourchannel
+        # learnmicrosoft: https://learn.microsoft.com/en-us/users/yourprofile
+        # linkedin: https://linkedin.com/in/yourprofile
+        # mastodon: https://mastodon.social/@yourhandle
+        # microsofttechcommunity: https://techcommunity.microsoft.com/users/yourprofile
+        # slack: https://yourworkspace.slack.com
+        # twitter: https://twitter.com/yourhandle
+        # gitlab: https://gitlab.com/yourhandle
+        # --- Video Sharing ---
+        # twitch: https://twitch.tv/yourchannel
+        # youtube: https://youtube.com/@yourchannel
+        # --- Gaming ---
+        # psn: https://psnprofiles.com/yourprofile
+        # steam: https://steamcommunity.com/id/yourprofile
+        # xbox: https://account.xbox.com/en-US/profile?gamertag=yourgamertag
+        # --- Other ---
+        # reddit: https://reddit.com/user/yourprofile
+        # orcid: https://orcid.org/0000-0000-0000-0000
         rss: /index.xml
       link_tooltip: false # enable the social link tooltip, options: true, false
   # Site
