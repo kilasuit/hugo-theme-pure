@@ -53,6 +53,8 @@ The value is the full URL to your profile on that network.
 |-----|---------|-------------|
 | `twitch` | [Twitch](https://twitch.tv) | `https://twitch.tv/yourchannel` |
 | `youtube` | [YouTube](https://youtube.com) | `https://youtube.com/@yourchannel` |
+| `soundcloud` | [SoundCloud](https://soundcloud.com) | `https://soundcloud.com/yourprofile` |
+| `spotify` | [Spotify](https://spotify.com) | `https://open.spotify.com/user/yourprofile` |
 
 ### Gaming
 
