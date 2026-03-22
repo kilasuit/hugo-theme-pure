@@ -179,6 +179,8 @@ params:
         # microsofttechcommunity: https://techcommunity.microsoft.com/users/yourprofile
         # slack: https://yourworkspace.slack.com
         # twitter: https://twitter.com/yourhandle
+        # instagram: https://instagram.com/yourhandle
+        # tiktok: https://tiktok.com/@yourhandle
         # gitlab: https://gitlab.com/yourhandle
         # --- Video Sharing ---
         # twitch: https://twitch.tv/yourchannel
@@ -287,4 +289,3 @@ params:
     - member
     - tag
     - recent_posts
-
