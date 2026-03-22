@@ -183,6 +183,8 @@ params:
         # --- Video Sharing ---
         # twitch: https://twitch.tv/yourchannel
         # youtube: https://youtube.com/@yourchannel
+        # soundcloud: https://soundcloud.com/yourprofile
+        # spotify: https://open.spotify.com/user/yourprofile
         # --- Gaming ---
         # psn: https://psnprofiles.com/yourprofile
         # steam: https://steamcommunity.com/id/yourprofile
