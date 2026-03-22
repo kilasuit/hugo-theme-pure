@@ -44,6 +44,8 @@ The value is the full URL to your profile on that network.
 | `microsofttechcommunity` | [Microsoft Tech Community](https://techcommunity.microsoft.com) | `https://techcommunity.microsoft.com/users/yourprofile` |
 | `slack` | [Slack](https://slack.com) | `https://yourworkspace.slack.com` |
 | `twitter` | [X / Twitter](https://x.com) | `https://twitter.com/yourhandle` |
+| `instagram` | [Instagram](https://instagram.com) | `https://instagram.com/yourhandle` |
+| `tiktok` | [TikTok](https://tiktok.com) | `https://tiktok.com/@yourhandle` |
 | `github` | [GitHub](https://github.com) | `https://github.com/yourhandle` |
 | `gitlab` | [GitLab](https://gitlab.com) | `https://gitlab.com/yourhandle` |
 
