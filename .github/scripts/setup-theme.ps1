@@ -1,12 +1,4 @@
-param(
-    [string]$GithubRepository = $env:GITHUB_REPOSITORY
-)
-
-if ([string]::IsNullOrEmpty($GithubRepository)) {
-    $GithubRepository = Split-Path (Get-Location).Path -Leaf
-}
-
-$ThemeName = (Split-Path $GithubRepository -Leaf) -replace '^hugo-theme-', ''
+$ThemeName = 'pure'
 $ThemesDir = "exampleSite/themes"
 
 New-Item -ItemType Directory -Force -Path $ThemesDir | Out-Null
