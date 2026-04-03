@@ -255,7 +255,7 @@ params:
       condensedView: false # true = merge all author posts into one view;
                            # false = combined view + per-author breakdown (when >1 URL)
       repliesLayout: horizontal # Layout for the replies panel when multiple bskyPostURLs are set.
-                                # Options: horizontal | vertical-per-post | grid | timeordered
+                                # Options: horizontal | vertical-per-post | grid | timeordered | reverseTimeOrdered
 
   # Donate
   donate:

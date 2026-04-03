@@ -3,6 +3,8 @@
    ============================================================= */
 
 .bluesky-interactions {
+  --bsky-embedded-indent: 32px;
+
   margin-top: 30px;
   padding: 20px;
   border: 1px solid var(--border-color, #eeeeee);
@@ -86,6 +88,102 @@
 .bsky-error {
   color: #d9534f;
   padding: 8px 0;
+}
+
+/* -------------------------------------------------------
+   Source posts (original posts referenced by bskyPostURLs)
+   ------------------------------------------------------- */
+.bsky-source-posts {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bsky-source-post {
+  padding: 14px;
+  border: 2px solid #0085ff;
+  border-radius: 8px;
+  background: var(--bg-color, #fff);
+}
+
+.bsky-source-post-text {
+  color: var(--text-color, #333);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 8px 0;
+  padding-left: 42px;
+  font-size: 15px;
+}
+
+.bsky-source-post-actions {
+  padding-left: 42px;
+}
+
+.bsky-source-post-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #0085ff !important;
+  text-decoration: none !important;
+}
+
+.bsky-source-post-link:hover {
+  text-decoration: underline !important;
+}
+
+/* -------------------------------------------------------
+   Embedded quote (shown inside a quote card)
+   ------------------------------------------------------- */
+.bsky-embedded-quote {
+  margin: 8px 42px 8px 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color, #eeeeee);
+  border-left: 3px solid #0085ff;
+  border-radius: 4px;
+  background: var(--code-bg, #f6f6f6);
+  font-size: 13px;
+}
+
+.bsky-embedded-quote-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.bsky-embedded-quote-header .bsky-avatar {
+  width: 24px;
+  height: 24px;
+  font-size: 11px;
+}
+
+.bsky-embedded-quote-text {
+  color: var(--text-color, #333);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 6px;
+  padding-left: var(--bsky-embedded-indent, 32px);
+}
+
+.bsky-embedded-quote-footer {
+  padding-left: var(--bsky-embedded-indent, 32px);
+}
+
+.bsky-embedded-quote-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #0085ff !important;
+  text-decoration: none !important;
+}
+
+.bsky-embedded-quote-link:hover {
+  text-decoration: underline !important;
 }
 
 /* -------------------------------------------------------
@@ -442,6 +540,22 @@
   background-color: var(--bg-color);
 }
 
+[data-theme="dark"] .bsky-source-post {
+  background-color: var(--bg-color);
+  border-color: #64b5f6;
+}
+
+[data-theme="dark"] .bsky-embedded-quote {
+  background-color: var(--code-bg);
+  border-color: var(--border-color);
+  border-left-color: #64b5f6;
+}
+
+[data-theme="dark"] .bsky-source-post-link,
+[data-theme="dark"] .bsky-embedded-quote-link {
+  color: #64b5f6 !important;
+}
+
 [data-theme="dark"] .bsky-reply-nested {
   background-color: var(--code-bg);
   border-left-color: #64b5f6;
@@ -558,8 +672,20 @@
 
   .bsky-reply-text,
   .bsky-reply-stats,
+  .bsky-source-post-text,
+  .bsky-source-post-actions,
   .bsky-quote .bsky-reply-text,
   .bsky-quote .bsky-reply-stats {
     padding-left: 0;
+  }
+
+  .bsky-embedded-quote {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .bsky-embedded-quote-text,
+  .bsky-embedded-quote-footer {
+    padding-left: var(--bsky-embedded-indent, 32px);
   }
 }

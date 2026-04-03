@@ -221,6 +221,131 @@
     return html;
   }
 
+  /* ---- Source post (the referenced bskyPostURL post itself) ---- */
+
+  function renderSourcePost(r) {
+    if (!r.thread || !r.thread.post) return '';
+    var post = r.thread.post;
+    var author = post.author;
+    var record = post.record || {};
+    var displayName = author.displayName || author.handle;
+    var profileUrl = 'https://bsky.app/profile/' + encodeURIComponent(author.handle);
+    var rkey = post.uri.split('/').pop();
+    var postUrl = 'https://bsky.app/profile/' + encodeURIComponent(author.handle) + '/post/' + rkey;
+    var createdAt = record.createdAt || post.indexedAt || '';
+    var text = record.text || '';
+
+    return '<div class="bsky-source-post">' +
+      '<div class="bsky-reply-header">' +
+      renderAvatar(author) +
+      '<div class="bsky-reply-meta">' +
+      '<a href="' + escapeHtml(profileUrl) + '" target="_blank" rel="noopener noreferrer"' +
+      ' class="bsky-reply-author">' + escapeHtml(displayName) + '</a>' +
+      ' <span class="bsky-reply-handle">@' + escapeHtml(author.handle) + '</span>' +
+      ' &middot; ' +
+      '<a href="' + escapeHtml(postUrl) + '" target="_blank" rel="noopener noreferrer"' +
+      ' class="bsky-reply-time">' + escapeHtml(timeAgo(createdAt)) + '</a>' +
+      '</div>' +
+      '</div>' +
+      '<div class="bsky-source-post-text">' + escapeHtml(text) + '</div>' +
+      '<div class="bsky-source-post-actions">' +
+      '<a href="' + escapeHtml(postUrl) + '" target="_blank" rel="noopener noreferrer"' +
+      ' class="bsky-source-post-link">' + BSKY_BUTTERFLY_SVG + ' View on Bluesky</a>' +
+      '</div>' +
+      '</div>';
+  }
+
+  /* ---- Embedded quote preview (shown inside a quote card) ---- */
+
+  function renderEmbeddedQuote(embed) {
+    var rec = null;
+    if (!embed) return '';
+    if (embed.$type === 'app.bsky.embed.record#view') {
+      rec = embed.record;
+    } else if (embed.$type === 'app.bsky.embed.recordWithMedia#view') {
+      rec = embed.record && embed.record.record;
+    }
+    if (!rec || !rec.author) return '';
+
+    var author = rec.author;
+    var displayName = author.displayName || author.handle;
+    var profileUrl = 'https://bsky.app/profile/' + encodeURIComponent(author.handle);
+    var rkey = rec.uri ? rec.uri.split('/').pop() : '';
+    var postUrl = rkey
+      ? 'https://bsky.app/profile/' + encodeURIComponent(author.handle) + '/post/' + rkey
+      : profileUrl;
+    var value = rec.value || {};
+    var text = value.text || '';
+    var createdAt = value.createdAt || rec.indexedAt || '';
+
+    return '<div class="bsky-embedded-quote">' +
+      '<div class="bsky-embedded-quote-header">' +
+      renderAvatar(author) +
+      '<div class="bsky-reply-meta">' +
+      '<a href="' + escapeHtml(profileUrl) + '" target="_blank" rel="noopener noreferrer"' +
+      ' class="bsky-reply-author">' + escapeHtml(displayName) + '</a>' +
+      ' <span class="bsky-reply-handle">@' + escapeHtml(author.handle) + '</span>' +
+      (createdAt ? ' &middot; <a href="' + escapeHtml(postUrl) + '" target="_blank" rel="noopener noreferrer"' +
+        ' class="bsky-reply-time">' + escapeHtml(timeAgo(createdAt)) + '</a>' : '') +
+      '</div>' +
+      '</div>' +
+      (text ? '<div class="bsky-embedded-quote-text">' + escapeHtml(text) + '</div>' : '') +
+      '<div class="bsky-embedded-quote-footer">' +
+      '<a href="' + escapeHtml(postUrl) + '" target="_blank" rel="noopener noreferrer"' +
+      ' class="bsky-embedded-quote-link">' + BSKY_BUTTERFLY_SVG + ' View quoted post</a>' +
+      '</div>' +
+      '</div>';
+  }
+
+  /* ---- Quote card (includes embedded quote context) ---- */
+
+  function renderQuoteCard(post) {
+    var author = post.author;
+    var record = post.record || {};
+    var displayName = author.displayName || author.handle;
+    var profileUrl = 'https://bsky.app/profile/' + encodeURIComponent(author.handle);
+    var rkey = post.uri.split('/').pop();
+    var postUrl = 'https://bsky.app/profile/' + encodeURIComponent(author.handle) + '/post/' + rkey;
+    var createdAt = record.createdAt || post.indexedAt || '';
+    var text = record.text || '';
+
+    return '<div class="bsky-reply">' +
+      '<div class="bsky-reply-header">' +
+      renderAvatar(author) +
+      '<div class="bsky-reply-meta">' +
+      '<a href="' + escapeHtml(profileUrl) + '" target="_blank" rel="noopener noreferrer"' +
+      ' class="bsky-reply-author">' + escapeHtml(displayName) + '</a>' +
+      ' <span class="bsky-reply-handle">@' + escapeHtml(author.handle) + '</span>' +
+      ' &middot; ' +
+      '<a href="' + escapeHtml(postUrl) + '" target="_blank" rel="noopener noreferrer"' +
+      ' class="bsky-reply-time">' + escapeHtml(timeAgo(createdAt)) + '</a>' +
+      '</div>' +
+      '</div>' +
+      '<div class="bsky-reply-text">' + escapeHtml(text) + '</div>' +
+      renderEmbeddedQuote(post.embed) +
+      '<div class="bsky-reply-stats">' +
+      '<span>\u2764\ufe0f ' + (post.likeCount || 0) + '</span>' +
+      ' <span>\ud83d\udcac ' + (post.replyCount || 0) + '</span>' +
+      ' <span>🔁 ' + (post.repostCount || 0) + '</span>' +
+      '</div>' +
+      '</div>';
+  }
+
+  function renderQuotesByLayout(quotes, layout) {
+    if (quotes.length === 0) return '';
+    if (layout === 'grid') {
+      return '<div class="bsky-replies-grid-layout">' +
+        quotes.map(function (post) {
+          return '<div class="bsky-replies-grid-item bsky-quote">' +
+            renderQuoteCard(post) + '</div>';
+        }).join('') +
+        '</div>';
+    }
+    return quotes.map(function (post) {
+      return '<div class="bsky-quote">' + renderQuoteCard(post) + '</div>';
+    }).join('');
+  }
+
   function renderRepliesByLayout(valid, layout) {
     var multiUrl = valid.length > 1;
     var isPerPostLayout = multiUrl && (layout === 'horizontal' || layout === 'vertical-per-post');
@@ -277,11 +402,14 @@
       }
     });
 
-    /* timeordered: merge + sort by createdAt */
-    if (layout === 'timeordered') {
+    /* timeordered / reverseTimeOrdered: merge + sort by createdAt */
+    if (layout === 'timeordered' || layout === 'reverseTimeOrdered') {
       allReplies.sort(function (a, b) {
         var dA = (a.post && a.post.record && a.post.record.createdAt) || '';
         var dB = (b.post && b.post.record && b.post.record.createdAt) || '';
+        if (layout === 'reverseTimeOrdered') {
+          return dA > dB ? -1 : dA < dB ? 1 : 0;
+        }
         return dA < dB ? -1 : dA > dB ? 1 : 0;
       });
     }
@@ -313,13 +441,6 @@
     return html;
   }
 
-  function renderQuotes(quotes) {
-    /* getQuotes returns postView objects directly (not wrapped in { post: ... }) */
-    return quotes.map(function (post) {
-      return '<div class="bsky-quote">' + renderPostCard(post, 0) + '</div>';
-    }).join('');
-  }
-
   /* ---- DOM update ---- */
 
   function show(el) { if (el) el.style.display = ''; }
@@ -335,6 +456,17 @@
 
   function applyResults(valid, allLikes, allReposts, allQuotes) {
     hide(container.querySelector('.bsky-loading'));
+
+    /* Source posts */
+    var sourcePostsEl = container.querySelector('.bsky-source-posts');
+    if (sourcePostsEl) {
+      var sourceHtml = valid.map(renderSourcePost).join('');
+      if (sourceHtml) {
+        sourcePostsEl.innerHTML = sourceHtml;
+        show(sourcePostsEl);
+      }
+    }
+
     show(container.querySelector('.bsky-likes-section'));
     show(container.querySelector('.bsky-tabs-section'));
 
@@ -367,7 +499,7 @@
 
     /* Quotes */
     setText('[data-bsky-tab="quotes"] .bsky-tab-count', allQuotes.length);
-    var quotesHtml = renderQuotes(allQuotes);
+    var quotesHtml = renderQuotesByLayout(allQuotes, repliesLayout);
     setHtml('#bsky-panel-quotes', quotesHtml || '<p class="bsky-empty">No quotes yet.</p>');
 
     /* Per-author breakdown */

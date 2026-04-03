@@ -51,6 +51,10 @@
         {{ T "bsky_loading" | default "Loading Bluesky interactions…" }}
       </div>
 
+      {{/* ── Source posts (hidden until JS populates them) ── */}}
+      <div class="bsky-source-posts" style="display:none"
+           aria-label="{{ T "bsky_original_posts" | default "Original Posts" }}"></div>
+
       {{/* ── Likes section (hidden until JS populates it) ── */}}
       <div class="bsky-likes-section" style="display:none">
         <div class="bsky-likes-count">
