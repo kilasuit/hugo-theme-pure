@@ -5,7 +5,7 @@ copyright: CC BY 4.0 CN
 defaultContentLanguage: en  # en/zh/...
 footnoteReturnLinkContents: ↩
 hasCJKLanguage: true
-paginate: 7
+pagination.pagerSize: 25
 enableEmoji: true
 enableGitInfo: true  # Enable Git info for all pages
 # Suppress Instagram error for example site (unrelated to Git info feature)
