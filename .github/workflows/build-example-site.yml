@@ -38,24 +38,17 @@ jobs:
           extended: true
 
       - name: Setup theme
-        run: |
-          mkdir -p exampleSite/themes
-          THEME_NAME=$(basename "$GITHUB_REPOSITORY" | sed 's/^hugo-theme-//')
-          ln -s $(pwd) "exampleSite/themes/${THEME_NAME}"
+        shell: pwsh
+        run: ./.github/scripts/setup-theme.ps1
 
       - name: Build example site
+        shell: pwsh
         run: |
-          cd exampleSite
-          REPO_OWNER="${{ github.repository_owner }}"
-          REPO_NAME="${{ github.event.repository.name }}"
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            BRANCH_NAME="${{ github.head_ref }}"
-            SAFE_BRANCH=$(echo "$BRANCH_NAME" | sed 's/[^a-zA-Z0-9-]/-/g')
-            BASE_URL="https://${REPO_OWNER}.github.io/${REPO_NAME}/${SAFE_BRANCH}/"
-          else
-            BASE_URL="https://${REPO_OWNER}.github.io/${REPO_NAME}/"
-          fi
-          hugo --minify --baseURL "${BASE_URL}"
+          ./.github/scripts/build-example-site.ps1 `
+            -RepoOwner "${{ github.repository_owner }}" `
+            -RepoName "${{ github.event.repository.name }}" `
+            -EventName "${{ github.event_name }}" `
+            -BranchName "${{ github.head_ref }}"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
