@@ -235,6 +235,25 @@ params:
       pageSize: 10 # pagination size
       visitor: false # Article reading statistic https://valine.js.org/visitor.html
 
+  # Social Interactions
+  # Controls which social platforms are used for post interactions (likes, replies, quotes).
+  # Uses only public, unauthenticated APIs — no cookies are stored.
+  # Add bskyPostURLs to a post's frontmatter to enable Bluesky interactions for that post.
+  # Example frontmatter:
+  #   bskyPostURLs:
+  #     - "https://bsky.app/profile/author1.bsky.social/post/RKEY"
+  #     - "https://bsky.app/profile/author2.bsky.social/post/RKEY"
+  socialInteractions:
+    enable: false          # Set to true to enable social interactions on posts
+    platforms:
+      - bluesky            # Add more platforms here as support is added
+    bluesky:
+      showLikes: true      # Show the likes count and avatar strip
+      showReplies: true    # Show threaded replies tab
+      showQuotes: true     # Show quote-posts tab
+      condensedView: false # true = merge all author posts into one view;
+                           # false = combined view + per-author breakdown (when >1 URL)
+
   # Donate
   donate:
     enable: false

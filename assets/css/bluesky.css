@@ -1,0 +1,463 @@
+/* =============================================================
+   Bluesky Interactions Component
+   ============================================================= */
+
+.bluesky-interactions {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid var(--border-color, #eeeeee);
+  border-radius: 8px;
+  background-color: var(--bg-color, #fff);
+  font-size: 14px;
+  color: var(--text-color, #333);
+}
+
+/* Header row: icon + title + share button */
+.bsky-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.bsky-header-icon {
+  color: #0085ff;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.bsky-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+  color: var(--text-color, #333);
+  border: none;
+}
+
+.bsky-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  color: #0085ff !important;
+  border-color: #0085ff !important;
+  text-decoration: none !important;
+  flex-shrink: 0;
+}
+
+.bsky-share-btn:hover,
+.bsky-share-btn:focus {
+  background-color: #0085ff !important;
+  color: #fff !important;
+}
+
+.bsky-btn-icon {
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Loading spinner */
+.bsky-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted, #777);
+  padding: 12px 0;
+}
+
+.bsky-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border-color, #eee);
+  border-top-color: #0085ff;
+  border-radius: 50%;
+  animation: bsky-spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes bsky-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error state */
+.bsky-error {
+  color: #d9534f;
+  padding: 8px 0;
+}
+
+/* -------------------------------------------------------
+   Likes section
+   ------------------------------------------------------- */
+.bsky-likes-section {
+  margin-bottom: 20px;
+}
+
+.bsky-likes-count {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-color, #333);
+}
+
+.bsky-likes-avatars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Shared avatar base */
+.bsky-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  text-decoration: none !important;
+  transition: opacity 0.2s;
+}
+
+.bsky-avatar:hover {
+  opacity: 0.8;
+}
+
+.bsky-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bsky-avatar-placeholder {
+  background-color: #0085ff;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bsky-likes-more {
+  font-size: 12px;
+  color: var(--text-muted, #777);
+  padding: 4px 10px;
+  background: var(--code-bg, #f6f6f6);
+  border-radius: 12px;
+}
+
+/* -------------------------------------------------------
+   Tabs
+   ------------------------------------------------------- */
+.bsky-tabs-section {
+  margin-top: 16px;
+}
+
+.bsky-tabs-nav {
+  display: flex;
+  border-bottom: 2px solid var(--border-color, #eeeeee);
+  margin-bottom: 16px;
+  gap: 0;
+}
+
+.bsky-tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text-muted, #777);
+  font-weight: 500;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.bsky-tab-btn:hover {
+  color: #0085ff;
+}
+
+.bsky-tab-btn.active {
+  color: #0085ff;
+  border-bottom-color: #0085ff;
+}
+
+/* Tab panels */
+.bsky-tab-panel {
+  display: none;
+}
+
+.bsky-tab-panel.active {
+  display: block;
+}
+
+/* Empty / placeholder text */
+.bsky-empty {
+  color: var(--text-muted, #777);
+  text-align: center;
+  padding: 24px 0;
+  font-style: italic;
+}
+
+/* -------------------------------------------------------
+   Individual reply / quote cards
+   ------------------------------------------------------- */
+.bsky-reply {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color, #eeeeee);
+}
+
+.bsky-reply:last-child {
+  border-bottom: none;
+}
+
+.bsky-reply-nested {
+  background: var(--code-bg, #f6f6f6);
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-top: 4px;
+  border-left: 2px solid #0085ff;
+  border-bottom: none;
+}
+
+.bsky-reply-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.bsky-reply-meta {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.4;
+}
+
+.bsky-reply-author {
+  font-weight: 600;
+  color: var(--text-color, #333) !important;
+  text-decoration: none !important;
+}
+
+.bsky-reply-author:hover {
+  color: #0085ff !important;
+}
+
+.bsky-reply-handle {
+  color: var(--text-muted, #777);
+  font-size: 12px;
+}
+
+.bsky-reply-time {
+  font-size: 12px;
+  color: var(--text-muted, #777) !important;
+  text-decoration: none !important;
+}
+
+.bsky-reply-time:hover {
+  color: #0085ff !important;
+  text-decoration: underline !important;
+}
+
+.bsky-reply-text {
+  color: var(--text-color, #333);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 8px;
+  padding-left: 42px; /* align with text after avatar */
+}
+
+.bsky-reply-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-muted, #777);
+  padding-left: 42px;
+}
+
+/* Quote cards */
+.bsky-quote {
+  padding: 12px;
+  border: 1px solid var(--border-color, #eeeeee);
+  border-radius: 6px;
+  margin-bottom: 12px;
+  background: var(--bg-color, #fff);
+}
+
+.bsky-quote .bsky-reply-text,
+.bsky-quote .bsky-reply-stats {
+  padding-left: 42px;
+}
+
+/* -------------------------------------------------------
+   Per-author breakdown (multi-author posts)
+   ------------------------------------------------------- */
+.bsky-per-author {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color, #eeeeee);
+}
+
+.bsky-per-author-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-color, #333);
+  border: none;
+}
+
+.bsky-per-author-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.bsky-author-card {
+  padding: 16px;
+  border: 1px solid var(--border-color, #eeeeee);
+  border-radius: 8px;
+  background: var(--card-bg, #fff);
+}
+
+.bsky-author-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.bsky-author-card-header a {
+  color: #0085ff !important;
+  text-decoration: none !important;
+  word-break: break-all;
+}
+
+.bsky-author-card-header a:hover {
+  text-decoration: underline !important;
+}
+
+.bsky-author-stats-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-color, #333);
+}
+
+.bsky-icon-inline {
+  vertical-align: middle;
+  color: #0085ff;
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------
+   Dark mode
+   ------------------------------------------------------- */
+[data-theme="dark"] .bluesky-interactions {
+  border-color: var(--border-color);
+  background-color: var(--bg-color);
+}
+
+[data-theme="dark"] .bsky-reply-nested {
+  background-color: var(--code-bg);
+  border-left-color: #64b5f6;
+}
+
+[data-theme="dark"] .bsky-quote {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .bsky-author-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .bsky-tabs-nav {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .bsky-reply {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .bsky-likes-more {
+  background-color: var(--code-bg);
+}
+
+[data-theme="dark"] .bsky-tab-btn:not(.active) {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .bsky-spinner {
+  border-color: var(--border-color);
+  border-top-color: #64b5f6;
+}
+
+[data-theme="dark"] .bsky-share-btn {
+  color: #64b5f6 !important;
+  border-color: #64b5f6 !important;
+}
+
+[data-theme="dark"] .bsky-share-btn:hover,
+[data-theme="dark"] .bsky-share-btn:focus {
+  background-color: #64b5f6 !important;
+  color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .bsky-tab-btn.active {
+  color: #64b5f6;
+  border-bottom-color: #64b5f6;
+}
+
+[data-theme="dark"] .bsky-tab-btn:hover {
+  color: #64b5f6;
+}
+
+/* -------------------------------------------------------
+   Responsive
+   ------------------------------------------------------- */
+@media (max-width: 768px) {
+  .bluesky-interactions {
+    padding: 14px;
+  }
+
+  .bsky-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bsky-share-btn {
+    margin-left: 0;
+    align-self: flex-start;
+  }
+
+  .bsky-per-author-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bsky-reply-nested {
+    margin-left: 10px !important;
+  }
+
+  .bsky-tab-btn {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .bsky-reply-text,
+  .bsky-reply-stats,
+  .bsky-quote .bsky-reply-text,
+  .bsky-quote .bsky-reply-stats {
+    padding-left: 0;
+  }
+}

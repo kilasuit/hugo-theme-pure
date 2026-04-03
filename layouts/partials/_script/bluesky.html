@@ -1,0 +1,12 @@
+{{/*
+  _script/bluesky.html
+  Loads the Bluesky interactions JavaScript when the feature is enabled
+  and the current page contains Bluesky post URLs in its frontmatter.
+*/}}
+{{- $si := .Site.Params.socialInteractions -}}
+{{- if and $si $si.enable (in $si.platforms "bluesky") -}}
+  {{- if and .Params.bskyPostURLs (gt (len .Params.bskyPostURLs) 0) -}}
+    {{- $bskyJs := resources.Get "js/bluesky.js" | resources.Minify | resources.Fingerprint -}}
+    <script src="{{ $bskyJs.Permalink }}" defer></script>
+  {{- end -}}
+{{- end -}}

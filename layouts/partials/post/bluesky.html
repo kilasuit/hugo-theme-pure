@@ -1,0 +1,110 @@
+{{/*
+  Bluesky Interactions Partial
+  ============================
+  Renders a Bluesky likes + replies/quotes section for a post.
+
+  Requirements:
+    - Site config: params.socialInteractions.enable = true
+    - Site config: params.socialInteractions.platforms includes "bluesky"
+    - Post frontmatter: bskyPostURLs (array of one or more Bluesky post URLs)
+
+  Uses public Bluesky API only — no authentication or cookies required.
+*/}}
+{{- $si := .Site.Params.socialInteractions -}}
+{{- if and $si $si.enable (in $si.platforms "bluesky") -}}
+  {{- $urls := .Params.bskyPostURLs -}}
+  {{- if and $urls (gt (len $urls) 0) -}}
+    {{- $bskyCfg := default dict $si.bluesky -}}
+    {{- $condensed := default false $bskyCfg.condensedView -}}
+    {{- $shareText := printf "%s %s" .Title .Permalink -}}
+    <section id="bluesky-interactions"
+      class="bluesky-interactions">
+      <script>
+      window.BSKY_INTERACTIONS = { urls: {{ $urls }}, condensed: {{ $condensed }} };
+      </script>
+
+      {{/* ── Header ── */}}
+      <div class="bsky-header">
+        <span class="bsky-header-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3"/>
+          </svg>
+        </span>
+        <h3 class="bsky-title">{{ T "bluesky_interactions" | default "Bluesky Interactions" }}</h3>
+        <a href="https://bsky.app/intent/compose?text={{ $shareText | urlquery }}"
+           class="bsky-share-btn btn btn-default btn-sm"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="{{ T "share_on_bluesky" | default "Share on Bluesky" }}">
+          <svg class="bsky-btn-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+            <path d="M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3"/>
+          </svg>
+          {{ T "share_on_bluesky" | default "Share on Bluesky" }}
+        </a>
+      </div>
+
+      {{/* ── Loading state ── */}}
+      <div class="bsky-loading" aria-live="polite">
+        <span class="bsky-spinner" aria-hidden="true"></span>
+        {{ T "bsky_loading" | default "Loading Bluesky interactions…" }}
+      </div>
+
+      {{/* ── Likes section (hidden until JS populates it) ── */}}
+      <div class="bsky-likes-section" style="display:none">
+        <div class="bsky-likes-count">
+          ❤️ <span class="bsky-likes-total">0</span>
+          {{ T "likes" | default "likes" }}
+        </div>
+        <div class="bsky-likes-avatars"
+             aria-label="{{ T "bsky_liked_by" | default "People who liked this" }}"></div>
+      </div>
+
+      {{/* ── Tabs: Replies & Quotes (hidden until JS populates them) ── */}}
+      <div class="bsky-tabs-section" style="display:none">
+        <div class="bsky-tabs-nav" role="tablist">
+          <button class="bsky-tab-btn active"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="bsky-panel-replies"
+                  data-bsky-tab="replies">
+            {{ T "bsky_replies" | default "Replies" }}
+            (<span class="bsky-tab-count">0</span>)
+          </button>
+          <button class="bsky-tab-btn"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="bsky-panel-quotes"
+                  data-bsky-tab="quotes">
+            {{ T "bsky_quotes" | default "Quotes" }}
+            (<span class="bsky-tab-count">0</span>)
+          </button>
+        </div>
+        <div class="bsky-tab-panels">
+          <div class="bsky-tab-panel active"
+               id="bsky-panel-replies"
+               role="tabpanel"
+               data-bsky-panel="replies">
+            <p class="bsky-empty">{{ T "bsky_no_replies" | default "No replies yet." }}</p>
+          </div>
+          <div class="bsky-tab-panel"
+               id="bsky-panel-quotes"
+               role="tabpanel"
+               data-bsky-panel="quotes">
+            <p class="bsky-empty">{{ T "bsky_no_quotes" | default "No quotes yet." }}</p>
+          </div>
+        </div>
+      </div>
+
+      {{/* ── Per-author breakdown for multi-author posts (condensed=false only) ── */}}
+      {{- if and (not $condensed) (gt (len $urls) 1) -}}
+      <div class="bsky-per-author" style="display:none"></div>
+      {{- end -}}
+
+      {{/* ── Error state ── */}}
+      <div class="bsky-error" style="display:none">
+        {{ T "bsky_load_error" | default "Failed to load Bluesky interactions." }}
+      </div>
+
+    </section>
+  {{- end -}}
+{{- end -}}
