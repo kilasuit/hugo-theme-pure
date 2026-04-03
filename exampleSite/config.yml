@@ -13,7 +13,7 @@ ignoreErrors: ['error-missing-instagram-accesstoken']
 PygmentsCodeFences: false
 googleAnalytics: ""      # UA-XXXXXXXX-X 
 permalinks:
-  posts: /:year/:month/:filename/
+  posts: /:year/:month/:day/:filename/
 
 taxonomies:
     category : categories
