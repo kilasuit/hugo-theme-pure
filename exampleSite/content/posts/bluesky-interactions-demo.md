@@ -15,7 +15,7 @@ authors = ["Hugo Authors"]
 bskyPostURLs = [
     "https://bsky.app/profile/whitep4nth3r.com/post/3lbk6kboymk25",
 ]
----
++++
 
 This post demonstrates the Bluesky interactions feature built into this theme.
 
