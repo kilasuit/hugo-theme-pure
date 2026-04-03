@@ -1,4 +1,4 @@
-/* global: bluesky interactions script */
+/* globals: bluesky interactions script */
 /* jshint esversion: 6 */
 (function () {
   'use strict';
