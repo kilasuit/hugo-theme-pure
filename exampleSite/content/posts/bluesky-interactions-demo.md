@@ -1,6 +1,7 @@
 +++
 title = "Bluesky Interactions Demo"
-date = "2024-11-01"
+date = 2025-11-01T18:00:00Z
+draft = false
 description = "An example post demonstrating the Bluesky interactions feature — likes, threaded replies, and quote-posts pulled live from the Bluesky public API."
 tags = [
     "bluesky",
@@ -14,7 +15,7 @@ authors = ["Hugo Authors"]
 bskyPostURLs = [
     "https://bsky.app/profile/whitep4nth3r.com/post/3lbk6kboymk25",
 ]
-+++
+---
 
 This post demonstrates the Bluesky interactions feature built into this theme.
 
