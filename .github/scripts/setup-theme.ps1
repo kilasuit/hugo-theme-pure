@@ -1,4 +1,4 @@
-$ThemeName = 'pure'
+$ThemeName = 'hugo-theme-pure'
 $ThemesDir = "exampleSite/themes"
 
 New-Item -ItemType Directory -Force -Path $ThemesDir | Out-Null
