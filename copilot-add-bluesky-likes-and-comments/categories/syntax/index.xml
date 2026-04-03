@@ -12,7 +12,7 @@
 &lt;li>Hugo static site generation&lt;/li>
 &lt;li>Community building and organization&lt;/li>
 &lt;li>DevOps practices and tooling&lt;/li>
-&lt;/ul></description></item><item><title>Bluesky Interactions Demo</title><link>https://kilasuit.github.io/hugo-theme-pure/copilot-add-bluesky-likes-and-comments/2025/11/bluesky-interactions-demo/</link><pubDate>Sat, 01 Nov 2025 18:00:00 +0000</pubDate><guid>https://kilasuit.github.io/hugo-theme-pure/copilot-add-bluesky-likes-and-comments/2025/11/bluesky-interactions-demo/</guid><description>&lt;p>This post demonstrates the Bluesky interactions feature built into this theme.&lt;/p>
+&lt;/ul></description></item><item><title>Bluesky Interactions Demo</title><link>https://kilasuit.github.io/hugo-theme-pure/copilot-add-bluesky-likes-and-comments/2025/11/bluesky-interactions-demo/</link><pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate><guid>https://kilasuit.github.io/hugo-theme-pure/copilot-add-bluesky-likes-and-comments/2025/11/bluesky-interactions-demo/</guid><description>&lt;p>This post demonstrates the Bluesky interactions feature built into this theme.&lt;/p>
 &lt;p>When &lt;code>socialInteractions&lt;/code> is enabled in your site config and a post includes one or more &lt;code>bskyPostURLs&lt;/code> in its frontmatter, the theme will automatically load and display:&lt;/p>
 &lt;ul>
 &lt;li>❤️ &lt;strong>Likes&lt;/strong> — shown as a strip of profile avatars below the post&lt;/li>
