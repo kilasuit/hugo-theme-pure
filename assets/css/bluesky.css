@@ -294,6 +294,81 @@
 }
 
 /* -------------------------------------------------------
+   Reply layout variants
+   ------------------------------------------------------- */
+
+/* horizontal: each URL's replies in a side-by-side scrollable column */
+.bsky-replies-horizontal {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  align-items: flex-start;
+}
+
+.bsky-replies-column {
+  flex: 1 1 280px;
+  min-width: 260px;
+  border: 1px solid var(--border-color, #eeeeee);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.bsky-replies-column-header,
+.bsky-replies-post-header {
+  font-weight: 600;
+  font-size: 13px;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border-color, #eeeeee);
+}
+
+.bsky-replies-column-header a,
+.bsky-replies-post-header a {
+  color: #0085ff !important;
+  text-decoration: none !important;
+}
+
+.bsky-replies-column-header a:hover,
+.bsky-replies-post-header a:hover {
+  text-decoration: underline !important;
+}
+
+/* vertical-per-post: sequential sections with a divider header per URL */
+.bsky-replies-vertical-per-post {
+  display: block;
+}
+
+.bsky-replies-post-section {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border-color, #eeeeee);
+}
+
+.bsky-replies-post-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* grid: equal-width cards */
+.bsky-replies-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.bsky-replies-grid-item {
+  border: 1px solid var(--border-color, #eeeeee);
+  border-radius: 6px;
+  padding: 12px;
+  background: var(--bg-color, #fff);
+}
+
+.bsky-replies-grid-item .bsky-reply {
+  border-bottom: none;
+  padding: 0;
+}
+
+/* -------------------------------------------------------
    Per-author breakdown (multi-author posts)
    ------------------------------------------------------- */
 .bsky-per-author {
@@ -423,6 +498,21 @@
   color: #64b5f6;
 }
 
+[data-theme="dark"] .bsky-replies-column,
+[data-theme="dark"] .bsky-replies-grid-item {
+  border-color: var(--border-color);
+  background-color: var(--card-bg);
+}
+
+[data-theme="dark"] .bsky-replies-column-header,
+[data-theme="dark"] .bsky-replies-post-header {
+  border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .bsky-replies-post-section {
+  border-bottom-color: var(--border-color);
+}
+
 /* -------------------------------------------------------
    Responsive
    ------------------------------------------------------- */
@@ -439,6 +529,18 @@
   .bsky-share-btn {
     margin-left: 0;
     align-self: flex-start;
+  }
+
+  .bsky-replies-horizontal {
+    flex-direction: column;
+  }
+
+  .bsky-replies-column {
+    min-width: 0;
+  }
+
+  .bsky-replies-grid-layout {
+    grid-template-columns: 1fr;
   }
 
   .bsky-per-author-grid {

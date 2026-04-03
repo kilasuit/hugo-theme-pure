@@ -16,11 +16,13 @@
   {{- if and $urls (gt (len $urls) 0) -}}
     {{- $bskyCfg := default dict $si.bluesky -}}
     {{- $condensed := default false $bskyCfg.condensedView -}}
+    {{- $showReposts := default true $bskyCfg.showReposts -}}
+    {{- $layout := default "timeordered" $bskyCfg.repliesLayout -}}
     {{- $shareText := printf "%s %s" .Title .Permalink -}}
     <section id="bluesky-interactions"
       class="bluesky-interactions">
       <script>
-      window.BSKY_INTERACTIONS = { urls: {{ $urls }}, condensed: {{ $condensed }} };
+      window.BSKY_INTERACTIONS = { urls: {{ $urls }}, condensed: {{ $condensed }}, layout: "{{ $layout }}" };
       </script>
 
       {{/* ── Header ── */}}
@@ -59,7 +61,7 @@
              aria-label="{{ T "bsky_liked_by" | default "People who liked this" }}"></div>
       </div>
 
-      {{/* ── Tabs: Replies & Quotes (hidden until JS populates them) ── */}}
+      {{/* ── Tabs: Replies, Reposts & Quotes (hidden until JS populates them) ── */}}
       <div class="bsky-tabs-section" style="display:none">
         <div class="bsky-tabs-nav" role="tablist">
           <button class="bsky-tab-btn active"
@@ -70,6 +72,16 @@
             {{ T "bsky_replies" | default "Replies" }}
             (<span class="bsky-tab-count">0</span>)
           </button>
+          {{- if $showReposts -}}
+          <button class="bsky-tab-btn"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="bsky-panel-reposts"
+                  data-bsky-tab="reposts">
+            {{ T "bsky_reposts" | default "Reposts" }}
+            (<span class="bsky-tab-count">0</span>)
+          </button>
+          {{- end -}}
           <button class="bsky-tab-btn"
                   role="tab"
                   aria-selected="false"
@@ -86,6 +98,14 @@
                data-bsky-panel="replies">
             <p class="bsky-empty">{{ T "bsky_no_replies" | default "No replies yet." }}</p>
           </div>
+          {{- if $showReposts -}}
+          <div class="bsky-tab-panel"
+               id="bsky-panel-reposts"
+               role="tabpanel"
+               data-bsky-panel="reposts">
+            <p class="bsky-empty">{{ T "bsky_no_reposts" | default "No reposts yet." }}</p>
+          </div>
+          {{- end -}}
           <div class="bsky-tab-panel"
                id="bsky-panel-quotes"
                role="tabpanel"

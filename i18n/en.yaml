@@ -204,10 +204,14 @@ likes:
   other: likes
 bsky_replies:
   other: Replies
+bsky_reposts:
+  other: Reposts
 bsky_quotes:
   other: Quotes
 bsky_no_replies:
   other: No replies yet.
+bsky_no_reposts:
+  other: No reposts yet.
 bsky_no_quotes:
   other: No quotes yet.
 bsky_load_error:

@@ -11,6 +11,7 @@
 
   var postUrls = config.urls;
   var condensedView = config.condensed === true;
+  var repliesLayout = config.layout || 'timeordered';
   var BSKY_API = 'https://public.api.bsky.app/xrpc';
 
   /* ---- Utility helpers ---- */
@@ -82,13 +83,29 @@
     ).catch(function () { return null; });
   }
 
+  function fetchAllReposts(uri) {
+    var reposts = [];
+    function page(cursor) {
+      var url = BSKY_API + '/app.bsky.feed.getRepostedBy?uri=' + encodeURIComponent(uri) + '&limit=100';
+      if (cursor) url += '&cursor=' + encodeURIComponent(cursor);
+      return fetchJson(url).then(function (data) {
+        var batch = data.repostedBy || [];
+        reposts = reposts.concat(batch);
+        if (data.cursor && batch.length === 100) return page(data.cursor);
+        return reposts;
+      });
+    }
+    return page(null).catch(function () { return reposts; });
+  }
+
   function fetchAllQuotes(uri) {
     var quotes = [];
     function page(cursor) {
       var url = BSKY_API + '/app.bsky.feed.getQuotes?uri=' + encodeURIComponent(uri) + '&limit=100';
       if (cursor) url += '&cursor=' + encodeURIComponent(cursor);
       return fetchJson(url).then(function (data) {
-        var batch = data.feed || [];
+        /* getQuotes returns { posts: postView[] } — not { feed: feedViewPost[] } */
+        var batch = data.posts || [];
         quotes = quotes.concat(batch);
         if (data.cursor && batch.length === 100) return page(data.cursor);
         return quotes;
@@ -108,7 +125,8 @@
       return Promise.all([
         fetchAllLikes(uri),
         fetchThread(uri),
-        fetchAllQuotes(uri)
+        fetchAllQuotes(uri),
+        fetchAllReposts(uri)
       ]).then(function (results) {
         return {
           url: url,
@@ -116,7 +134,8 @@
           uri: uri,
           likes: results[0],
           thread: results[1] ? results[1].thread : null,
-          quotes: results[2]
+          quotes: results[2],
+          reposts: results[3]
         };
       });
     }).catch(function (e) {
@@ -202,21 +221,101 @@
     return html;
   }
 
-  function renderReplies(threads) {
-    var html = '';
-    threads.forEach(function (thread) {
-      if (thread && thread.replies) {
-        thread.replies.forEach(function (reply) {
-          html += renderThreadNode(reply, 0);
+  function renderRepliesByLayout(valid, layout) {
+    var multiUrl = valid.length > 1;
+    var isPerPostLayout = multiUrl && (layout === 'horizontal' || layout === 'vertical-per-post');
+
+    /* horizontal / vertical-per-post: group threads by source URL */
+    if (isPerPostLayout) {
+      var perPost = valid.map(function (r) {
+        var html = '';
+        if (r.thread && r.thread.replies && r.thread.replies.length > 0) {
+          r.thread.replies.forEach(function (reply) {
+            html += renderThreadNode(reply, 0);
+          });
+        }
+        return {
+          handle: r.handle,
+          url: r.url,
+          html: html || '<p class="bsky-empty">No replies for this post.</p>'
+        };
+      });
+
+      if (layout === 'horizontal') {
+        return '<div class="bsky-replies-horizontal">' +
+          perPost.map(function (p) {
+            return '<div class="bsky-replies-column">' +
+              '<div class="bsky-replies-column-header">' +
+              '<a href="' + escapeHtml(p.url) + '" target="_blank" rel="noopener noreferrer">' +
+              '@' + escapeHtml(p.handle) + '</a>' +
+              '</div>' + p.html +
+              '</div>';
+          }).join('') +
+          '</div>';
+      }
+
+      /* vertical-per-post */
+      return '<div class="bsky-replies-vertical-per-post">' +
+        perPost.map(function (p) {
+          return '<div class="bsky-replies-post-section">' +
+            '<div class="bsky-replies-post-header">' +
+            '<a href="' + escapeHtml(p.url) + '" target="_blank" rel="noopener noreferrer">' +
+            '@' + escapeHtml(p.handle) + '</a>' +
+            '</div>' + p.html +
+            '</div>';
+        }).join('') +
+        '</div>';
+    }
+
+    /* Collect all top-level replies across all threads */
+    var allReplies = [];
+    valid.forEach(function (r) {
+      if (r.thread && r.thread.replies) {
+        r.thread.replies.forEach(function (reply) {
+          allReplies.push(reply);
         });
       }
     });
+
+    /* timeordered: merge + sort by createdAt */
+    if (layout === 'timeordered') {
+      allReplies.sort(function (a, b) {
+        var dA = (a.post && a.post.record && a.post.record.createdAt) || '';
+        var dB = (b.post && b.post.record && b.post.record.createdAt) || '';
+        return dA < dB ? -1 : dA > dB ? 1 : 0;
+      });
+    }
+
+    /* grid: wrap each top-level reply in a card */
+    if (layout === 'grid') {
+      return '<div class="bsky-replies-grid-layout">' +
+        allReplies.map(function (reply) {
+          return '<div class="bsky-replies-grid-item">' +
+            renderThreadNode(reply, 0) + '</div>';
+        }).join('') +
+        '</div>';
+    }
+
+    /* default flat list (covers timeordered + single-url horizontal/vertical) */
+    return allReplies.map(function (reply) {
+      return renderThreadNode(reply, 0);
+    }).join('');
+  }
+
+  function renderAvatarStrip(actors, max) {
+    max = max || 30;
+    var html = actors.slice(0, max).map(function (actor) {
+      return renderAvatar(actor);
+    }).join('');
+    if (actors.length > max) {
+      html += '<span class="bsky-likes-more">+' + (actors.length - max) + '</span>';
+    }
     return html;
   }
 
   function renderQuotes(quotes) {
-    return quotes.map(function (feedItem) {
-      var post = feedItem.post;
+    /* getQuotes returns postView objects directly (not wrapped in { post: ... }) */
+    return quotes.map(function (post) {
       return '<div class="bsky-quote">' + renderPostCard(post, 0) + '</div>';
     }).join('');
   }
@@ -234,7 +333,7 @@
     if (el) el.innerHTML = val;
   }
 
-  function applyResults(allLikes, threads, allQuotes, perAuthorResults) {
+  function applyResults(valid, allLikes, allReposts, allQuotes) {
     hide(container.querySelector('.bsky-loading'));
     show(container.querySelector('.bsky-likes-section'));
     show(container.querySelector('.bsky-tabs-section'));
@@ -243,20 +342,28 @@
     setText('.bsky-likes-total', allLikes.length);
     var avatarsEl = container.querySelector('.bsky-likes-avatars');
     if (avatarsEl) {
-      var avatarHtml = allLikes.slice(0, 30).map(function (like) {
-        return renderAvatar(like.actor);
-      }).join('');
-      if (allLikes.length > 30) {
-        avatarHtml += '<span class="bsky-likes-more">+' + (allLikes.length - 30) + '</span>';
-      }
-      avatarsEl.innerHTML = avatarHtml;
+      avatarsEl.innerHTML = renderAvatarStrip(
+        allLikes.map(function (like) { return like.actor; }), 30
+      );
     }
 
     /* Replies */
-    var totalReplies = threads.reduce(function (n, t) { return n + countReplies(t); }, 0);
+    var totalReplies = valid.reduce(function (n, r) { return n + countReplies(r.thread); }, 0);
     setText('[data-bsky-tab="replies"] .bsky-tab-count', totalReplies);
-    var repliesHtml = renderReplies(threads);
+    var repliesHtml = totalReplies > 0
+      ? renderRepliesByLayout(valid, repliesLayout)
+      : '';
     setHtml('#bsky-panel-replies', repliesHtml || '<p class="bsky-empty">No replies yet.</p>');
+
+    /* Reposts */
+    var repostsTabCount = container.querySelector('[data-bsky-tab="reposts"] .bsky-tab-count');
+    if (repostsTabCount) repostsTabCount.textContent = allReposts.length;
+    var repostsPanel = container.querySelector('#bsky-panel-reposts');
+    if (repostsPanel) {
+      repostsPanel.innerHTML = allReposts.length > 0
+        ? '<div class="bsky-likes-avatars">' + renderAvatarStrip(allReposts, 30) + '</div>'
+        : '<p class="bsky-empty">No reposts yet.</p>';
+    }
 
     /* Quotes */
     setText('[data-bsky-tab="quotes"] .bsky-tab-count', allQuotes.length);
@@ -264,12 +371,12 @@
     setHtml('#bsky-panel-quotes', quotesHtml || '<p class="bsky-empty">No quotes yet.</p>');
 
     /* Per-author breakdown */
-    if (perAuthorResults && perAuthorResults.length > 1) {
+    if (!condensedView && valid.length > 1) {
       var perAuthorEl = container.querySelector('.bsky-per-author');
       if (perAuthorEl) {
         var html = '<h4 class="bsky-per-author-title">Per-Author Breakdown</h4>' +
           '<div class="bsky-per-author-grid">';
-        perAuthorResults.forEach(function (r) {
+        valid.forEach(function (r) {
           var replyCount = countReplies(r.thread);
           html +=
             '<div class="bsky-author-card">' +
@@ -281,7 +388,8 @@
             '<ul class="bsky-author-stats-list">' +
             '<li>\u2764\ufe0f <strong>' + r.likes.length + '</strong> likes</li>' +
             '<li>\ud83d\udcac <strong>' + replyCount + '</strong> replies</li>' +
-            '<li>\ud83d\udd01 <strong>' + r.quotes.length + '</strong> quotes</li>' +
+            '<li>🔁 <strong>' + r.reposts.length + '</strong> reposts</li>' +
+            '<li>🗨️ <strong>' + r.quotes.length + '</strong> quotes</li>' +
             '</ul>' +
             '</div>';
         });
@@ -305,13 +413,13 @@
       }
 
       var allLikes = [];
+      var allReposts = [];
       var allQuotes = [];
-      var allThreads = [];
 
       valid.forEach(function (r) {
         allLikes = allLikes.concat(r.likes);
+        allReposts = allReposts.concat(r.reposts);
         allQuotes = allQuotes.concat(r.quotes);
-        if (r.thread) allThreads.push(r.thread);
       });
 
       /* Deduplicate likes by actor DID */
@@ -323,17 +431,25 @@
         return true;
       });
 
-      /* Deduplicate quotes by post URI */
+      /* Deduplicate reposts by actor DID */
+      var seenRepostDids = Object.create(null);
+      allReposts = allReposts.filter(function (actor) {
+        var did = actor && actor.did;
+        if (!did || seenRepostDids[did]) return false;
+        seenRepostDids[did] = true;
+        return true;
+      });
+
+      /* Deduplicate quotes by post URI (getQuotes returns postView directly) */
       var seenUris = Object.create(null);
-      allQuotes = allQuotes.filter(function (q) {
-        var uri = q.post && q.post.uri;
+      allQuotes = allQuotes.filter(function (post) {
+        var uri = post && post.uri;
         if (!uri || seenUris[uri]) return false;
         seenUris[uri] = true;
         return true;
       });
 
-      var perAuthor = (!condensedView && valid.length > 1) ? valid : null;
-      applyResults(allLikes, allThreads, allQuotes, perAuthor);
+      applyResults(valid, allLikes, allReposts, allQuotes);
     }).catch(function (e) {
       console.error('Bluesky interactions error:', e);
       hide(container.querySelector('.bsky-loading'));
