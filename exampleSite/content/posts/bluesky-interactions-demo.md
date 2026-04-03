@@ -1,7 +1,7 @@
 +++
 title = "Bluesky Interactions Demo"
 date = 2025-11-01
-time - 18:00
+time = 18:00
 draft = false
 description = "An example post demonstrating the Bluesky interactions feature — likes, threaded replies, and quote-posts pulled live from the Bluesky public API."
 tags = [
