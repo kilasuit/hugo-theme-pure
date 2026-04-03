@@ -1,11 +1,11 @@
 baseURL: https://example.com/
-theme: pure
+theme: hugo-theme-pure
 title: Pure theme for Hugo
 copyright: CC BY 4.0 CN
 defaultContentLanguage: en  # en/zh/...
 footnoteReturnLinkContents: ↩
 hasCJKLanguage: true
-paginate: 7
+pagination.pagerSize: 25
 enableEmoji: true
 enableGitInfo: true  # Enable Git info for all pages
 # Suppress Instagram error for example site (unrelated to Git info feature)
@@ -13,7 +13,7 @@ ignoreErrors: ['error-missing-instagram-accesstoken']
 PygmentsCodeFences: false
 googleAnalytics: ""      # UA-XXXXXXXX-X 
 permalinks:
-  posts: /:year/:month/:filename/
+  posts: /:year/:month/:day/:filename/
 
 taxonomies:
     category : categories
@@ -234,6 +234,28 @@ params:
       meta: nick,mail # custom comment header
       pageSize: 10 # pagination size
       visitor: false # Article reading statistic https://valine.js.org/visitor.html
+
+  # Social Interactions
+  # Controls which social platforms are used for post interactions (likes, replies, quotes).
+  # Uses only public, unauthenticated APIs — no cookies are stored.
+  # Add bskyPostURLs to a post's frontmatter to enable Bluesky interactions for that post.
+  # Example frontmatter:
+  #   bskyPostURLs:
+  #     - "https://bsky.app/profile/author1.bsky.social/post/RKEY"
+  #     - "https://bsky.app/profile/author2.bsky.social/post/RKEY"
+  socialInteractions:
+    enable: true           # Set to true to enable social interactions on posts
+    platforms:
+      - bluesky            # Add more platforms here as support is added
+    bluesky:
+      showLikes: true      # Show the likes count and avatar strip
+      showReplies: true    # Show threaded replies tab
+      showReposts: true    # Show reposts tab
+      showQuotes: true     # Show quote-posts tab
+      condensedView: false # true = merge all author posts into one view;
+                           # false = combined view + per-author breakdown (when >1 URL)
+      repliesLayout: horizontal # Layout for the replies panel when multiple bskyPostURLs are set.
+                                # Options: horizontal | vertical-per-post | grid | timeordered | reverseTimeOrdered
 
   # Donate
   donate:

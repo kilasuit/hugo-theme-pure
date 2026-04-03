@@ -192,6 +192,33 @@ share:
 rss_feed:
   other: RSS Feed
 
+bluesky_interactions:
+  other: Bluesky Interactions
+share_on_bluesky:
+  other: Share on Bluesky
+bsky_loading:
+  other: Loading Bluesky interactions…
+bsky_original_posts:
+  other: Original Posts
+bsky_liked_by:
+  other: People who liked this
+likes:
+  other: likes
+bsky_replies:
+  other: Replies
+bsky_reposts:
+  other: Reposts
+bsky_quotes:
+  other: Quotes
+bsky_no_replies:
+  other: No replies yet.
+bsky_no_reposts:
+  other: No reposts yet.
+bsky_no_quotes:
+  other: No quotes yet.
+bsky_load_error:
+  other: Failed to load Bluesky interactions.
+
 
 copyright_theme_by:
   other: Theme by
