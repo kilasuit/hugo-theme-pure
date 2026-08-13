@@ -53,6 +53,11 @@
     <link rel="stylesheet" href="{{ $darkModeCss.Permalink }}">
     {{ $bionicCss := resources.Get "css/bionic-reading.css" | minify | fingerprint}}
     <link rel="stylesheet" href="{{ $bionicCss.Permalink }}">
+    {{- $si := .Site.Params.socialInteractions -}}
+    {{- if and $si $si.enable (in $si.platforms "bluesky") }}
+    {{ $blueskyCss := resources.Get "css/bluesky.css" | minify | fingerprint}}
+    <link rel="stylesheet" href="{{ $blueskyCss.Permalink }}">
+    {{- end }}
     {{ with .Site.Params.customCSS }}
     <link rel="stylesheet" href="{{ . | absURL }}" async>{{ end }}
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.15.10/styles/github.min.css" async>

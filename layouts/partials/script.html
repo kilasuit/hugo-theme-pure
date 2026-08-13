@@ -66,6 +66,7 @@
 {{- end }}
 {{- if in $.Site.Params.mainSections .Type }}
 {{- partial "_script/comment.html" . }}
+{{- partial "_script/bluesky.html" . }}
 {{- end }}
 {{- partial "_script/fancybox.html" . }}
 {{- partial "_script/analytics.html" . }}
