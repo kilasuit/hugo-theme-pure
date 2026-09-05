@@ -1,8 +1,14 @@
-# hugo-theme-pure
+# hugo-theme-pure-enhanced
 
-A port of [hexo-theme-pure](https://github.com/cofess/hexo-theme-pure) for Hugo. Powerful & Clean. [Iconfont](http://blog.cofess.com/hexo-theme-pure/iconfont/demo_fontclass.html)
+This is a fork of [@xiaoheiAh](https://github.com/xiaoheiAh/hugo-theme-pure) which was a port of [hexo-theme-pure](https://github.com/cofess/hexo-theme-pure) for Hugo. Powerful & Clean. [Iconfont](http://blog.cofess.com/hexo-theme-pure/iconfont/demo_fontclass.html)
 
-This was previously built but subsequently archived by [@xiaoheiAh](https://github.com/xiaoheiAh/hugo-theme-pure)
+This adds additional features including 
+- Bionic Reading,
+- Social Interactions via Platforms like Bluesky
+
+It also tidy's up some layout quirks.
+
+With more to come.
 
 ## Contribute
 
