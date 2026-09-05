@@ -3,8 +3,9 @@
 This is a fork of [@xiaoheiAh](https://github.com/xiaoheiAh/hugo-theme-pure) which was a port of [hexo-theme-pure](https://github.com/cofess/hexo-theme-pure) for Hugo. Powerful & Clean. [Iconfont](http://blog.cofess.com/hexo-theme-pure/iconfont/demo_fontclass.html)
 
 This adds additional features including 
-- Bionic Reading,
-- Social Interactions via Platforms like Bluesky
+- Bionic Reading
+- Dark Mode
+- Social Interactions via Platforms like Bluesky, GitHub Comments
 
 It also tidy's up some layout quirks.
 
